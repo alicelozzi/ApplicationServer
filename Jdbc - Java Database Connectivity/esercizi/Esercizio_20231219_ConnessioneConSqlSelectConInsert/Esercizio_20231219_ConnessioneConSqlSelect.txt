@@ -1,0 +1,16 @@
+Utilizzando come riferimento il sorgente allegato all'esercizio:
+
+--- PARTE 1 ---
+1) Creare un nuovo progetto Java denominato "JdbcCrudSelect"
+2) Convertirlo in un progetto Maven
+3) configurare il pom.xml con le opportune dependencies (driver MariaDb versione 2.7.4)
+4) Creare la classe java bean Prodotto che mappa i campi "codice_prodotto" e "descrizione" dalla tabella Prodotto del database "magazzino"
+5) Creare una classe "JdbcCrudSelect" che, utilizzando il java bean Prodotto, 
+   recuperi i valori dei campi "codice_prodotto" e "descrizione" dalla tabella Prodotto del database "magazzino" (utilizzare come riferimento l'allegato)
+
+--- PARTE 2 ---
+6) Aggiungere al bean Prodotto i campi della omonima tabella: "quantita_disponibile" e "prezzo" ed aggiornare la SELECT coi due nuovi campi
+7) Scrivere le istruzioni per la SELECT con LIKE che ritorna l'elenco di prodotti di tipo televisore 
+8) Inserire un nuovo prodotto di tipo televisore
+9) Ricercare tutti i prodotti di tipo televisore
+

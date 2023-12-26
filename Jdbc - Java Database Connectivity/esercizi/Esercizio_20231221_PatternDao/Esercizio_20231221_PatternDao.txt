@@ -1,0 +1,12 @@
+Premessa:
+
+fare riferimento all'allegato del jdbc magazzino 
+con le classi implementate secondo il pattern Dao 
+ed allo script SQL del database 'banca'.
+
+(1)
+Implementare il Progetto JdbcBanca secondo le regole del Pattern Dao,
+individuando le clasi entity bean e dao necessarie
+
+(2)
+Implementare un metodo che seleziona tutti i movimenti di prelievo superiori al valore 550.

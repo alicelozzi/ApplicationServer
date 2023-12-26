@@ -1,0 +1,6 @@
+Utilizzando come riferimento il sorgente allegato all'esercizio:
+
+Premessa: rendere i metodi di seguito indicati con modificatore 'static' cosicchè da rendereli richiamabili dal mai
+
+1) implementare il metodo loadClienteByNominativo richiamabile dal main
+2) implementare il metodo addCliente richiamabile dal main

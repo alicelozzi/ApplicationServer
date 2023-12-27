@@ -1,0 +1,57 @@
+(1) DBMS (Data Base Management System)
+XAMPP (https://it.wikipedia.org/wiki/XAMPP)
+XAMPP è una piattaforma software multipiattaforma e libera costituita da Apache HTTP Server, il DBMS MariaDB (precedentemente MySQL) e tutti gli strumenti necessari per utilizzare i linguaggi di programmazione PHP e Perl. Il nome è un acronimo dei software sopra citati (la X sta per x-platform, l'abbreviazione di cross-platform in lingua inglese ovvero multipiattaforma). 
+
+	(a) 
+	Link-url di download per l'installazione:
+	https://www.apachefriends.org/it/download.html
+	
+	(b)
+	In particolare, ai fini del macro argomento del corso, "Database: Progettazione ed Implementazione", 
+	interessa il Data Base Management System (DBMS) MySql-Mariadb.
+	Si installa come servizio nel sistema operativo del proprio computer.  
+
+	Per avviarlo occorre prima avviare il programma XAMPP Control Panel 
+	e da lì il servizio denominato MySQL, premendo il relativo pulsante START.
+
+(2) Applicazione client per configurare i database applicativi, sia con l'uso di SQL che con l'uso dell'interfaccia utente grafica.
+DBEaver (https://en.wikipedia.org/wiki/DBeaver)
+Applicazione realizzata con il linguaggio Java, qundi cros--platform. 
+Usa Java Data Base Connectivity (JDBC) per il collegamento ai database relazionali.
+
+	(a)
+	Link-url di download alla versione gratuita per l'installazione (community edition):
+	https://dbeaver.io/download/
+	
+	(b) 
+	Una volta installata, avviare l'applicazione (accertandosi di aver precedentemente avviato il DBMS), 
+	ed efffettuare il collegamento al servizio DBMS con le credenziali relative.
+	In maniera predefinita, le credenziali di collegamento al DBMS MySql-MariaDb 
+	avvengono con l'utente con credenziali: username=>"root" e password assente.
+
+
+
+(3)
+https://www.tutorialspoint.com
+da usare per approfondimento in modalità bigname
+
+(4)
+https://stackoverflow.com
+da usare per problemi specifici, quando si conosce esattamente il contesto del problema per cui cercare una rispsota
+
+(5)
+https://www.mariadbtutorial.com
+utile strumento di tutorial rivolto oltre che ad SQL alle specifiche caratteristiche SQL implemnetate in MysQl (versione MariaDb) (si veda uso di funzioni specifiche come CURDATE, SUBSTRING, ecc..)
+
+
+	
+
+
+
+
+
+
+
+
+
+

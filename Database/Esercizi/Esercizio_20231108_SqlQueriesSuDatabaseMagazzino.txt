@@ -1,0 +1,18 @@
+Dopo avere eseguito lo script sql del database 'magazzino' (vedi cartella 'magazzino' in 'esempi'),
+effettuare le seguenti query sul database 'magazzino':
+
+* seleziona tutti i clienti il cui codice fiscale è 'BVEGTA0123456789'
+* seleziona tutti i clienti il cui nominativo contiene il termine 'mo'
+* seleziona tutti i prodotti con quantità disponibile maggiore di tre unita
+* seleziona tutti i prodotti con quantità disponibile tra due e tre unità
+* seleziona tutti i prodotti con prezzo inferiore a 600 euro.
+* seleziona tutti gli ordini effettuati dal cliente il cui codice fiscale è: 'BVEGTA0123456789' 
+* inserisci il prodotto 'Lavatrice Candy 360', codificandola, con quantità 6 unità ed un prezzo di 839 euro. 
+* inserisci il cliente 'Giordano Bruno' con codice fiscale 'BRNGRD0123456789'
+* inserisci l'ordine in data odierna per cliente e prodotto di cui sopra (Giordano Bruno e Lavatrice Candy) 
+   per un totale di unità 2
+* aggiorna la quantità disponibile del prodotto in base all'ordine effettuato   
+* elimina l'ordine precedentemetne inserito
+* aggiorna la quantità disponibile del prodotto in base all'ordine eliminato   
+
+

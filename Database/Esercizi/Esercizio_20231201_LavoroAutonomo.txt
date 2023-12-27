@@ -1,0 +1,38 @@
+PREMESSA: 
+fare riferimento allo schema fisico di cui all'esempio denominato 'biblioteca' (valutare anche lo schema concettuale) nella cartella omonima, alla sezione 'esempi' dei materiali didattici dell'argomento 'Database...' 
+
+
+1) Implementare lo schema fisico, definendo per ciascuna tabella, nell'ordine:
+
+	a) la tipologia del campo
+	b) eventuali campi NULL 
+	c) eventuali campi auto-incrementanti
+	c) la chiave primaria (primary-key)
+	d) le eventuali chiavi correlate (foreign-key)
+	e) i campi indice (si può anche fare in un secondo momento, dopo avere implementato le query di tipo select capendo quali condizioni ci sono in WHERE)
+
+NOTA: tenere presente che il codice tessera è così composto 23-001 (tesseramento del 2023 con progressivo 001) 
+      il codice biblioteca è codificato analogamente ma si riferisce al libro (23-099 99-esimo libro posto nel catalogo della biblioteca nel 2023)
+
+
+2) Popolare le tabelle con almeno 5 libri e 4 utenti ed inserire almeno 20 prestiti di cui 12 sono stati restituiti (hanno sia data_prestito che data_restituzione) ed 8 ancora no (hanno solo la data del prestito). 
+   Inoltre, se un libro è in prestito e non è ancora stato restituito, lo stato del libro passa da libero ad occupato.
+
+
+3) Rispondere alle seguenti query:
+   
+	a) selezionare dal catalogo tutti i libri attualmente in prestito
+	b) selezionare dal catalogo tutti i libri editi in un determinato anno
+	b) selezionare tutti gli utenti tesserati in un determinato mese-anno (dipende da come avete popolato il db, ad esempio quelli di novembre 2023 vanno dal 1 novembre al 30 novembre del 2023....BETWEEN DATE)
+	c) selezionare tutti i libri letti da un determinato utente di cui è noto il codice_tessera
+	d) selezionare tutti i libri letti da 3 utenti ciascuno col suo codice_tessere (clausola IN...)
+	e) selezionare tutti i libri letti da utenti con nominativo che inizia con (indicare tre caratteri)
+	f) calcolare quanti libri ha letto un determinato utente con nominativo esattamente uguale a...
+	g) seleziona tutti i clienti che non hanno letto libri
+	h) seleziona tutti i libri che non sono mai stati letti
+	i) raggruppa per codice_tessera, indicando per ogni utente (tutti i dati dell'utente) quante volte ha letto libri (ogni prestito comporta una lettura)
+	l) eliminare tutti gli tujetni che non hanno mai letto libri
+
+
+
+

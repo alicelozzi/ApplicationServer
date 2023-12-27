@@ -1,0 +1,18 @@
+PREMESSA: 
+il presente esercizio è il prosieguo di quello di lavoro automnomo del 24 novembre 2023 di cui si dispongono le soluzioni.
+
+15) a) aggiungere un nuovo proprietario, 
+    b) di tre conti con valuta GBP (sterlina britannica): due aperti in Germania (DE) e l'altro aperto in Francia (FR), con scoperto rispettivamente di 345, 523 e 987, 
+    c) su cui, per ciascun conto, vengono effettuati 3 versamenti e 2 prelievi
+
+16) aggiornare tutti conti che hanno uno scoperto superiore a 500 euro, ponendo la data ed ora di intestazione alle 23:59:59 del 24 dicembre 2023
+
+17) selezionare tutti i dati del conto (o dei conti se più di uno con pari valore nel versamento) in EUR ed aperti in Italia, su cui sono stati effettuati più versamenti (calcolo ammontare con funzione MAX) 
+    NOTA: escludere i conti che non hanno alcun versamento (possibile presenza del valore NULL in totale versato)
+
+18) selezionare tutti i dati del conto (o dei conti se più di uno con pari valore nel preleivo) in GBP ed aperti in Germania o Spagna, su cui sono stati effettuati meno prelievi (calcolo ammontare con funzione MIN) 
+    NOTA: escludere i conti che non hanno alcun prelievo (possibile presenza del valore NULL in totale prelevato)
+
+19) eliminare tutti i movimenti dei conti francesi
+
+20) usando una query di select annidata nella condizione where: eliminare tutti i movimenti di versamento, (query-annidata)-> per i conti in EUR che hanno un importo versato superiore a 1600 euro (query di SELECT con solo output iban)  

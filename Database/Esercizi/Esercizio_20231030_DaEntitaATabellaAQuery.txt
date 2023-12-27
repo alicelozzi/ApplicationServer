@@ -1,0 +1,16 @@
+1) In base al gruppo di appartenenza: definire le caratteristiche (proprietà/attributi) per ciascuna delle seguenti entità:
+
+	GRUPPO GIALLO: STUDENTE (CONTESTO: SISTEMA APPLICATIVO "PORTALE UNIVERSITARIO")
+	GRUPPO VERDE: EDIFICIO (CONTESTO: SISTEMA APPLICATIVO "CALCOLO COEFFICIENTE ENERGETICO")
+	GRUPPO ARANCIONE: CORSO (CONTESTO: SISTEMA APPLICATIVO "VENDITA CORSI ONLINE")
+	GRUPPO VIOLA: MEZZO DI TRASPORTO (CONTESTO: "SISTEMA TRASPORTI PUBBLICI")
+	GRUPPO BLU: MOVIE (CONTESTO: "ACQUISTO FILM/DOCUMENTARI/SERIE-TV ONLINE")
+	GRUPPO ROSSO: GARA (CONTESTO: SISTEMA "GESTIONE GARE DI VELOCITA' IN ATLETICA")
+
+2) Per ogni attributo individuato nell'entità, stabilire l'intervallo di valori ammessi (tipizzare l'attributo).
+
+3) Con l'uso di DBEaver creare un database opportunamente denominato. Quindi, creare in esso la tabella/archivio relativa all'entità di propria competenza.
+
+4) Inserire manualmente almeno 5 istanze-record per la tabella creata
+
+5) Effettuare una query SQL di SELECT per selezionare tutte le istanze-record della tabella.

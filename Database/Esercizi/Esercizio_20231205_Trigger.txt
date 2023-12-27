@@ -1,0 +1,88 @@
+PREMESSA: 
+fare riferimento al database universita ed al database magazzino di cui si dispongono gli esempi
+
+
+1) Universita: implementare un trigger BEFORE INSERT che impedisca di registrare oltre i 2 sostenimenti per uno studente (lo studente può avere al massimo 2 esami registrati con voto)
+
+2) Magazzino: implementare un trigger BEFORE INSERT che impedisca di inserire un ordine per i prodotti televisore (TV...)
+
+
+
+
+********** Sintassi del comando da usare nelle finestre SQL di DBEAVER: **********
+
+CREATE TRIGGER {nome del trigger}
+    BEFORE INSERT ON {nome della tabella}
+    FOR EACH ROW
+BEGIN 
+	-- inserire qui le istruzioni dell'algoritmo
+	-- prima la dichiarazione delle variabili con la clausola DECLARE
+	-- poi le istruzioni fino alla verifica della condizione per cui, 
+	--  se non rispettata, lanciare il SIGNAL STATE di errore...
+END
+
+Esempi di trigger BEFORE INSERT implementati su database 'universita' e 'magazzino':
+
+
+
+
+********* UNIVERSITA **********
+
+-- È POSSIBILE INSERIRE UN SOSTNEIMENTO DI ESAME PER UN STUDENTE CON RELATIVO VOTO SOLO SE ESSO NON HA GIÀ UN NUMERO DI CREDITI SUFFICIENTE PER LAUREARSI (CON OLTRE 10 CREDITI CI SI PUÒ LAUREARE)
+
+CREATE DEFINER=`root`@`localhost` TRIGGER `verificaCreditiStudenteBis` BEFORE INSERT ON `sostenimento` FOR EACH ROW 
+begin
+	DECLARE numero_crediti_studente INT DEFAULT 0;
+	-- equivale in Java ad: int numeroCreditiStudente = 0
+	-- numero di crediti per lo studente specifico di cui si sta inserendo la registreazione del voto
+
+	-- il cursore rappresenta una variabile tabella in memoria RAM
+	DECLARE cursore_crediti_studente CURSOR FOR   
+		select SUM(es.numero_crediti) as numero_crediti
+				  from sostenimento so inner join esame es on so.codice_esame = es.codice_esame 
+				 where so.matricola = new.matricola  -- valore matricola del nuovo record che si sta inserendo
+				 group by so.matricola;	
+				
+
+ 	open cursore_crediti_studente;
+ 	fetch cursore_crediti_studente into numero_crediti_studente; 
+ 	close cursore_crediti_studente;
+	
+	IF (numero_crediti_studente > 10) THEN
+ 		SIGNAL SQLSTATE '75000' SET MESSAGE_TEXT="sostenimento dell'esame non registrabile, lo studente ha già un numero di crediti sufficiente per laurearsi!!!"; 
+ 	END IF;
+
+END
+
+
+
+********* MAGAZZINO **********
+
+-- È POSSIBILE INSERIRE UN ORDINAZIONE DI UN PRODOTTO DA PARTE DI UN CLIENTE SOLO SE LA QUANTITÀ ORDINATA NON SUPERA LA QUANTITÀ DISPONIBILE DEL PRODOTTO
+
+CREATE DEFINER=`root`@`localhost` TRIGGER test
+AFTER INSERT
+ON ordinazione FOR EACH row
+
+begin -- {
+	declare quantita_disponibile INT default 0;
+	
+	declare leggi_quantita_disponibile_prodotto_da_ordinare cursor for
+		select quantita_disponibile 
+		  from prodotto 
+		 where codice_prodotto = new.codice_prodotto;
+	
+	open leggi_quantita_disponibile_prodotto_da_ordinare;
+	fetch leggi_quantita_disponibile_prodotto_da_ordinare into quantita_disponibile;
+	close leggi_quantita_disponibile_prodotto_da_ordinare;
+
+	if (new.quantita_ordine > quantita_disponibile)	then -- {
+		SIGNAL SQLSTATE '75000' SET MESSAGE_TEXT="prodotto non ordinabile per quantità,disponibile insufficiente!!!"; 
+	end if; -- }	
+
+		
+end
+
+
+
+

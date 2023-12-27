@@ -1,0 +1,8 @@
+
+*************
+* SPECIFICA *
+*************
+
+Dato lo schema concettuale per le entità Studente, Esame e la sola relazione di Sostenimento (vedi Lavagna di oggi 13 novembre 2023),
+creare la relativa base dati denominata 'universita', creare le tabelle con chiavi primarie e correlate e popolarla con valori esame e studente opportuni ai fini della ricerca.
+

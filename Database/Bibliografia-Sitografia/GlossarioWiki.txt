@@ -1,0 +1,25 @@
+(Fonte Wikipedia)
+
+Informazione
+In generale può essere descritta come informazione qualsiasi notizia, dato o elemento che consente di avere conoscenza più o meno esatta di fatti, situazioni, modi di essere. 
+Nella pratica il concetto di informazione non è ben definito e tende ad assumere sfumature diverse in base al contesto di applicazione.
+
+Dato
+Un dato (dal latino datum, lett. dono, cosa data) è la manifestazione concreta di una certa quantità di informazione, per mezzo della sua codifica.
+
+Archivio
+Per archivio si intende una raccolta organizzata e sistematica di informazioni fissate su un supporto e di diversa natura. 
+
+Entità
+Rappresentano classi di oggetti (fatti, cose, persone, ...) che hanno proprietà comuni ed esistenza autonoma ai fini dell'applicazione di interesse. Un'occorrenza di un'entità è un oggetto o istanza della classe che l'entità rappresenta. Non si parla qui del valore che identifica l'oggetto ma dell'oggetto stesso. Un'interessante conseguenza di questo fatto è che un'occorrenza di entità ha un'esistenza indipendente dalle proprietà ad essa associate. In questo, il modello E-R presenta una marcata differenza rispetto al modello relazionale nel quale non possiamo rappresentare un oggetto senza conoscere alcune sue proprietà.
+
+In uno schema ogni entità ha un nome che la identifica univocamente e viene rappresentata graficamente tramite un rettangolo con il nome dell'entità al suo interno.
+
+Associazione
+Le associazioni (dette anche relazioni) rappresentano un legame tra due o più entità. Il numero di entità legate è indicato dal grado dell'associazione: un buono schema E-R è caratterizzato da una prevalenza di associazioni con grado due. È possibile legare un'entità con se stessa (attraverso un'associazione ad anello), nonché legare le stesse entità con più associazioni.
+
+Di norma viene rappresentata graficamente da un rombo contenente il nome dell'associazione. Il nome può essere un verbo in modo da fornire una direzione di lettura, oppure può essere un sostantivo in modo da non dare una direzione di lettura. L'orientamento accademico e professionale più recente propende per l'utilizzo del sostantivo proprio per evitare di dare un verso all'associazione.
+
+Attributi (Proprietò, Caratteristiche)
+Le entità e le associazioni possono essere descritte usando una serie di attributi. Tutti gli oggetti della stessa classe entità (o associazione) hanno gli stessi attributi: questo è ciò che si intende quando si parla di oggetti simili. La scelta degli attributi riflette il livello di dettaglio con il quale vogliamo rappresentare le informazioni sulle entità e sulle relazioni. Per ciascuna classe entità o associazione si definisce una chiave. La chiave è un insieme minimale di attributi che identifica univocamente un'istanza di entità o associazione. L'attributo si rappresenta con un'ellisse al cui interno viene specificato il nome dell'attributo o anche semplicemente, nel caso di diagrammi complessi, indicandone solo il nome, eventualmente in corrispondenza. In caso di chiave primaria, il nome dell'attributo viene sottolineato o cerchiato. 
+

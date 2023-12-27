@@ -1,0 +1,45 @@
+*** ASTRAZIONE DEL CONCETTO DI INFORMAZIONE ***
+1) Cosa si intende per informazione e cosa per dato
+2) Il dato rappresentato sotto forma di entità
+3) L'entità ed i suoi attributi
+4) Dall'entità alla tabella
+5) La relazione tra entità
+6) Relazioni n ad n ed 1 ad n: quando la relazione diventa tabella
+
+*** LA TABELLA: INTEGRITA' E CONSISTENZA DEL DATO ***
+1) Strutturare l'entità ed i suoi attributi: la tabella come contenitore del dato
+2) Definire la tabella tramite SQL-DDL: il comando CREATE TABLE
+3) Individuare i tipi di dato: l'attributo tipizzato diviene campo
+4) Il contenuto di una tabella: le istanze record
+5) Vincolo di univocità del record: cosa è e come definire il vincolo di chiave primaria
+6) Vincolo di correllazione del record: la chiave correlata ed i valori presenti in altre tabelle
+7) Campo nullable: valore non-dedinito come valore a sè, NULL
+8) Restringere i valori ammessi in un campo: il vincolo di tipo CHECK sul valore campo.
+
+
+** MANIPOLAZIONE DEI DATI CON SQL ***
+1) Come popolare le tabelle di un database: il comando SQL-DML di INSERT
+2) Lettura dei dati: il comando SELECT-FROM-WHERE-ORDER BY, leggere filtrando l'input da tabella.
+3) Selezionare i dati con input da più tabelle: INNER JOIN, LEFT-JOIN, RIGHT JOIN - inclusione ed esclusione dei valori letti. 
+4) La clausola IN in WHERE come alternativa ad OR multipli
+5) Raggruppare i record per effettuare i calcoli: GROUP BY e l'uso delle funzioni COUNT-SUM-MIN-MAX-AVG, ecc..
+6) Filtrare l'output della SELECT: la clausola HAVING
+7) Usare le query annidate in FROM ed in WHERE
+7) Aggiornare ed eliminare i dati: UPDATE E DELETE e loro uso in combinazione con WHERE per limitarne l'impatto su aggironamento ed eliminazione.
+
+
+*** INDICIZZAZIONE ***
+1) Necessità di velocizzare la ricerca dei dati nelle query di SELECT 
+2) Strategie di indicizzazione possibili: l'indice su CHAR e su VARCHAR
+3) Effetti collaterali: velocizzare la ricerca e rallentare la scrittura del dato.
+
+
+*** TRIGGER ***
+1) Estendere l'integrità dei dati contenuti in una tabella: CREATE TRIGGER
+2) Vari tipi di trigger: BEFOR od AFTER in combinazione con INSERT od UPDATE o DELETE.
+3) Un poco di programmazione con SQL: le variabili di tipo in MYSQL 
+4) Usare il tipo CURSOR per i risultati di una query in memoria nel DBMS
+5) Criteri di confronto e test di verifica del trigger
+6) Vantaggi e limiti nell'uso dei trigger.
+ 
+

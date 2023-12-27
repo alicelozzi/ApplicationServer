@@ -1,0 +1,16 @@
+--- CONTESTO APPLICATIVO ---
+Ad una università sono iscritti 5000 studenti. 
+I nuovi immatricolati ogni anno sono circa 350, 
+con un incremento annuo in media del 10%.
+L'apertura delle immatricolazioni così come delle iscrizioni avviene
+tra il 1 settembre ed il 1 novembre di ciasucn anno
+I corsi di laurea (solo magistrale) sono 6 e
+per ogni trimestre è prevista una sessione d'esame per ciascuna materia
+a cui possono partecipare un massimo di 5 studenti. 
+
+
+--- OBIETTIVI ---
+Conoscere gli studenti che si possono laureare (superamento di 10 crediti)
+Conoscere gli studenti che hanno diritto alla borsa di studio (media voto di almeno il 28)
+
+

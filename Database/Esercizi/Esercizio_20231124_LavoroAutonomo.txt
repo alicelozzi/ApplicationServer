@@ -1,0 +1,27 @@
+PREMESSA: 
+fare riferimento allo script sql presente all'esempio della banca
+e consultare tutte le lavagne finora pubblicate
+
+Attenzione:
+ * la banca ha due filiali, una in Italia ed una in Spagna 
+ * per un movimento sul conto, 
+   il prelievo ha valore 'P' maiuscolo ed il versamento ha valore 'V' maiuscolo
+
+
+ 1) seleziona tutti i clienti con nominativo che contiene 'an'
+ 2) calcola quanti clienti sono presenti nel database
+ 3) seleziona tutti i conti della filiale spagnola della banca
+ 4) seleziona tutti i conti in dollari (USD) presenti nella filiale italiana (IT)
+ 5) seleziona tutti i conti del cliente con nominativo che contiene 'Persichetti'
+ 6) seleziona tutti i movimenti effettuati sul conto 'ITff0123456789012345678901234567'
+ 7) seleziona i clienti che non hanno un conto
+ 8) seleziona i conti per cui non vi è alcun movimento
+ 9) selezionare i conti dei clienti con codice_fiscale: 'BNCFRL0123456789' o 'GTNBGD0123456789' o 'VLDBCC0123456789'
+10) calcola l'ammontare dei prelievi fatti sul conto 'ITff0123456789012345678901234567'
+11) calcola l'ammontare medio dei versamenti fatti sui conti in EUR
+12) per ogni conto, raggruppa i movimenti di tipo versamento calcolandone l'importo totale
+13) per ogni cliente, raggruppa l'importo di tutti i versamenti fatti sui conti di sua proprietà in dollari
+14) selezionare tutti i conti con un totale versato inferiore a 1457 euro
+
+
+

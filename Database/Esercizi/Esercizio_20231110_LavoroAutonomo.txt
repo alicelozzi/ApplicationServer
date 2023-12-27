@@ -1,0 +1,32 @@
+1) creare il database 'corsi_generation'
+
+2) creare una tabella 'corso' coi seguenti attributi opportunamente tipizzati: 
+   'codice_corso' (esempio '23JAITA101'), 'data_inizio', 'data_fine', 'descrizione'. 
+    Il campo 'codice_corso' è primary-key della tabella 'corso'.
+    I corsi previsti in generation sono: Tecnico Pannelli Fotovoltaici,
+    Addetto alle vendite, Addetti Vendita Centri Commerciali, Food & Beverage,
+	Programmatore di Macchine a Controllo Numerico, Cloud Specialist, Data Engineer,
+    Sviluppatore Java, Sviluppatore Software Salesforce, Sviluppatore Microsoft,
+	System and Cybersecurity Analyst, Data Analyst
+
+3) creare una tabella 'studente' coi seguenti attributi opportunamente tipizzati: 
+   'codice_fiscale', 'nominativo', 'eta', 'codice_corso'
+   Il campo 'codice_fiscale' è primary-key della tabella 'studente'.
+   Il campo 'codice_corso' è foreign-key verso il campo omonimo della tabella 'corso'.
+
+4) popolare la tabella corso con almeno nove corsi generation opportunamente codificati e svolti nel 2021, 2022, 2023.
+	possono essere anche solo su due argomenti diversi ma sui tre anni, ad esempio un corso Sviluppatore Java (JA) ed un corso su Controllo Numerico (CN)
+	ossia: 21JAITA096, 22CNITA102, ecc...
+
+5) popolare la tabella 'studente' con opportuni valori, almeno 10 studenti,
+   facendo sì che gli studenti  siano iscritti a corsi diversi 
+   (valore distinto nel campo codice_corso, almeno tre gruppi-classe di studenti che seguono corsi diversi).
+
+6) selezionare tutti gli studenti al di uno specifico corso Generation che sono al di sotto dei 25 anni di età
+
+7) selezionare tutti i corsi svolti su JAVA nell'anno 2021 (...like su JA)
+
+8) selezionare i corsi che sono inziati tra il 4 aprile 2018 ed il 5 maggio 2020
+
+
+

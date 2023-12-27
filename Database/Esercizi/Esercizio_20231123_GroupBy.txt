@@ -1,0 +1,24 @@
+
+
+PREMESSA: dato il database magazzino di cui all'esempio (vedi CANVAS).
+
+1) calcolare per ogni prodotto il totale fatturato
+
+2) calcolare per ogni cliente che ha fatto ordini, quanti prodotti ha ordinato (anche se di tipo differente)
+
+3) calcolare per ogni prodotto in ordine il prezzo medio di vendita
+
+
+
+--- Esempi da database universita ---
+
+-- numero_crediti per ogni studente   
+select so.matricola as matricola, SUM(es.numero_crediti) as numero_crediti
+  from sostenimento so inner join esame es on so.codice_esame = es.codice_esame 
+group by so.matricola
+
+
+-- media voto per ogni studente   
+select so.matricola as matricola, AVG(so.voto) as media_voto
+  from sostenimento so  
+group by so.matricola

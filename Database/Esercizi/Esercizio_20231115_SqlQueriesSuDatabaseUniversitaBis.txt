@@ -1,0 +1,13 @@
+1) Installare lo script-sql del database università di cui l'esempio nella cartella 'esempi'.
+   In alternativa usare il proprio database universita realizzato ieri, purchè opportunamente popolato.
+
+2) Eseguire una query di update che aggiorna i voti di un determinato studente, assegnado a tutti il voto 19.
+
+3) Eseguire una query di update che sostituisce il cognome di uno sutdente con altro cognome (a propria scelta)
+
+4) Eseguire una query di update che assegna tutti i sostenimenti di una matricola ad altra matricola.
+
+4) Eliminare tutti i sostenimenti di und eterminato studente
+
+5) Eliminare tutti i sostenimenti degli studenti che hanno avuto un voto inferiore a 25
+

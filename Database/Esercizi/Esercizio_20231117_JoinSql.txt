@@ -1,0 +1,35 @@
+--- PRIMA PARTE ---
+
+PREMESSA: dato il database magazzino di cui all'esempio.
+
+1) eseguire un comando SELECT che selezioni tutti i clienti unitamente alle ordinazioni
+
+2) eseguire un comando SELECT che selezioni tutti i prodotti per cui ci sia o meno un ordinazione
+
+3) eseguire un comando SELECT che selezioni tutte le ordinazioni ed eventualmente i prodotti
+
+
+--- SECONDA PARTE ---
+
+4) selezionare tutte le ordinazioni svolte da clienti col nominativo che contiene il termine 'mo'
+
+5) selezionare tutte le ordinazioni del prodotto 'Televisore LG X400'
+
+
+-- TERZA PARTE ---
+
+(doppio join, tabella ordinazione in join (right|left|inner, da capire quale) sia con cliente che con prodotto, se volete provare) 
+
+ordinazione ... JOIN ... prodotto
+            ... JOIN ... cliente
+
+
+OUTPUT: cliente.*, prodotto.*, ordinazione.*
+
+PS: se risovlete questo potete anche provate a risolvere la terza parte dell'esercizio di ieri: 'Esercizio_202311116_JoinSql'
+ 
+
+7) selezionare tutti i clienti che hanno ordinato il prodotto che contiene 'lavatrice'
+
+8) selezionare tutti i prodotti ordinati da clienti il cui nominativo contiene il termine 'et'
+

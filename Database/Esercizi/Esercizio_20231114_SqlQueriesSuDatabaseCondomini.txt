@@ -1,0 +1,24 @@
+
+*************
+* SPECIFICA *
+*************
+
+Un condominio è ubicato in un determinato comune ad un certo indirizzo ed e’ composto da appartamenti. 
+
+Ogni appartamento dispone di un numero interno, una scala ed una metratura. 
+
+Gli appartamenti possono essere adibiti a due tipi d'uso: uso ufficio o uso abitazione. 
+
+Nel caso siano adibiti ad ufficio si vuole conoscere anche il nome della società ed il numero di persone che vi operano.
+
+*************
+* RICHIESTE *
+*************
+a) Definire la struttura delle tabelle e la tipizzazione dei campi in base alla specifica di cui sopra, 
+   con la corretta impostazione delle foreing key tra condominio ed appartamento. 
+a) popolare le informazioni sui vari appartamenti e condominii (almeno 6 appartamenti e tre condomini, ubicati in tre comuni diversi).
+b) fornire l'elenco degli appartamenti adibiti ad abitazione, indipendentemente dal condominio di appartanenza.
+c) fornire l'elenco degli appartamenti adibiti ad abitazione, per un determinato condominio.
+d) aggiornare il numero di persone che operano in un determinato appartamento
+e) eliminare gli appartamenti ad uso ufficio dove vi operano più di dieci persone.
+

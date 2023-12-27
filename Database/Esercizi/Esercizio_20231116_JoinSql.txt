@@ -1,0 +1,27 @@
+--- PRIMA PARTE ---
+
+1) Installare lo script-sql del database università di cui l'esempio nella cartella 'esempi'.
+   In alternativa usare il proprio database universita realizzato ieri, purchè opportunamente popolato.
+
+2) eseguire un comando SELECT che considera tutti gli esami programmati indipendentemente se ci sia stato o meno un sostenimento
+
+3) eseguire un comando SELECT che considera tutti i sostenimenti unitamente agli esami programmati
+
+4) eseguire un comando SELECT che considera tutti i sostenimenti ed eventualmente gli esami programmati
+
+
+
+--- SECONDA PARTE ---
+
+5) selezionare tutti i sostenimenti svolti da studenti col cognome che inizia con Pers
+
+6) selezionare tutti i sostenimenti svolti per la materia 'antropologia'
+
+
+
+
+-- TERZA PARTE ---
+
+7) selezionare tutti gli studenti che hanno svolto l'esame di 'antropologia'
+
+8) selezionare tutti gli esami svolti da studenti il cui cognome inizia con 'Pers'

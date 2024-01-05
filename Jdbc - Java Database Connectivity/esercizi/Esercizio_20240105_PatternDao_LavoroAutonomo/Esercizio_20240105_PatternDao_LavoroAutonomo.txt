@@ -1,0 +1,11 @@
+
+PREMESSA:
+	(*) data in allegato la soluzione all'esercizio n°3 del test del 6 dicembre 2023 per l'argomento 'Database'
+	(*) data in allegato la soluzione all'esercizio di lavoro autonomo del 22/12/2024
+
+
+Dopo aver studiato con la solzuione all'esercizio di lavoro autonomo del 22/12/2024,
+implementare, sulla falsa riga del progetto JdbcBanca (la soluzione), i metodi DAO di add per le tabelle del database 
+di modo da popolare lo stesso avendo almeno tre gare e sei velocisti con, per ogni gara, 5 velocisti iscritti e quattro partecipanti.
+
+

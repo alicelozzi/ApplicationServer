@@ -1,0 +1,137 @@
+Premessa:
+fare riferimento all'allegato del jdbc magazzino con le classi implementate secondo il pattern Dao ed allo script SQL del database 'banca'.
+
+Per approfndimenti sui vari aspetti tratttati potete fare riferimento sempre al sito tutorialspoint come già detto in passato.
+
+Sia per la parte JDBC che per la parte del pattern DAO.
+(*) Per JDBC la url è: https://www.tutorialspoint.com/jdbc/index.htm
+(*) Per il pattern DAO la URL è: https://www.tutorialspoint.com/design_pattern/data_access_object_pattern.htm 
+
+
+(1)
+Implementare il Progetto JdbcBanca secondo le regole del Pattern Dao,
+individuando le classi entity bean e dao necessarie
+
+(2)
+Implementare, mappandole, le classi entity bean (inclusi i campi data e/o data_ora)
+
+NOTA: si ricordi di fare riferimento nel loop while di select ai metodi rispettivamente:
+	(*) per la classe LocalDate, metodo toLocalDate() per trasforamre la data di tipo clase java.sql.Date in java.time.LocalDate 
+	(*) per la classe LocalDate, metodo toLocalDate() per trasforamre la data di tipo clase java.sql.DateTime in java.time.LocalDateTime 
+	(*) vedere in merito l'esempio relativo in JdbcMagazzino al metodo loadOrdinazioneByQuery(...).
+	(*) per comprendere il funzionamento della classe LocalDate vedere l'esempio relativo nella omonima cartella
+
+
+(3)
+Implementare un metodo che seleziona tutti i movimenti di prelievo superiori al valore 550.
+
+(4)
+Implemtate i metodi addCliente(Cliente cliente), addConto(Conto conto), addMovimento(Movimento movimento1) nelle rispettive classi DAO (Data Access Object)
+
+(5)
+Implementare i metodi removeMovimentoByPrimaryKey(int idMovimento), removeContoByPrimaryKey(String iban), removeClienteByPrimaryKey(String codiceFiscale) nelle rispettive classi DAO.
+
+NOTA: i metodi eliminano un solo record, passando come parametro il valore della sua chiave primaria
+
+
+(6) 
+Implementare i metodi: public removeAllMovimento(), public removeAllConto(), public removeAllCliente() nelle rispettive classi DAO
+
+NOTA: questi metodi rimuovono tutti i record presenti nel database. 
+      Hanno modificatore private e non sono static.
+      Sono estremmamente potenti ma anche potenzialmente dannosi visto l'effetto che hanno sui dati nel database (generano problemi di sicurezza in questo senso, ma ne discuteremo quando affronteremo l'argomento test)
+      Non vanno inseriti nelle rispettive classi DAO ma come metodi di una stessa classe chiamata TestJdbcBancaDao (package: org.generation.italy.jdbc_banca.model.test)
+      La classe è essa stessa una classe DAO ma la useremo in seguito per i test del nostro componente model sul database Banca.
+      La classe TestJdbcBanca ha come attributi ClienteDao clienteDao, ConotDao, MovimentoDao movimentoDao. 
+      Nel costruttore di TestJdbBanca() si istanziano le tre classi dao.
+
+(7)
+Implementare nella classe dove è presente il metodo TestJdbcBancaDao un metodo denominato public popolaDatabaseBanca().
+Il metodo richiama un metodo private clearDatabase() definito nella stessa classe che al suo interno richiama i tre metodi removeAll di cui sopra ed effetttua gli add secondo la sequenza indicata nello script sql.
+Il metodo popolaDatabase effettua quindi il popolamento usando i meotdi add.. di cui sopra.
+
+private clearDatabae() { removeAllMovimento(); removeAllConto(); removeAllCliente();}
+public popolaDatabase {cleaarDabase(); addCliente().....(richiamato più volte, addConto()... richiamato più vlte ecc...)
+
+Il tutto secondo lo script SQL di seguito definito in banca.sql (estratto):
+
+INSERT INTO banca.cliente (cod_fiscale,nominativo,indirizzo) VALUES
+	 ('BNCFRL0123456789','Bianca Fiorelli',NULL),
+	 ('GTNBGD0123456789','Gaetano Badalamenti',NULL),
+	 ('MRRGVN0123456789','Giovanni Marrone',NULL),
+	 ('SVCNGB0123456789','Anselmo Persichetti',NULL),
+	 ('VLDBCC0123456789','Vladimiro Bocci',NULL);
+
+INSERT INTO banca.conto (valuta,scoperto,codice_fiscale,data_ora_intestazione,iban) VALUES
+	 ('GBP',345.0,'MRRGVN0123456789','2023-01-10 09:13:14','DEaa0123456789012345678901234567'),
+	 ('GBP',523.0,'MRRGVN0123456789','2023-07-25 12:06:15','DEbb0123456789012345678901234567'),
+	 ('EUR',255.0,'VLDBCC0123456789','2023-11-24 12:33:42','ESaa0123456789012345678901234567'),
+	 ('EUR',150.0,'GTNBGD0123456789','2023-11-24 12:33:42','EScc0123456789012345678901234567'),
+	 ('EUR',345.0,'SVCNGB0123456789','2023-11-24 12:36:19','ESdd0123456789012345678901234567'),
+	 ('USD',150.0,'SVCNGB0123456789','2023-11-24 12:36:19','ESee0123456789012345678901234567'),
+	 ('GBP',987.0,'MRRGVN0123456789','2023-12-31 14:39:47','FRaa0123456789012345678901234567'),
+	 ('EUR',500.0,'VLDBCC0123456789','2023-11-24 12:33:42','ITbb0123456789012345678901234567'),
+	 ('EUR',955.0,'VLDBCC0123456789','2023-12-24 23:59:59','ITdd0123456789012345678901234567'),
+	 ('EUR',0.0,'GTNBGD0123456789','2023-11-24 12:33:42','ITee0123456789012345678901234567'),
+	 ('EUR',1000.0,'SVCNGB0123456789','2023-12-24 23:59:59','ITff0123456789012345678901234567');
+
+
+INSERT INTO banca.movimento (data_ora_operazione,importo,tipo_operazione,iban) VALUES
+	 ('2023-11-24 12:42:50',450.0,'v','ESaa0123456789012345678901234567'),
+	 ('2023-11-24 12:48:36',555.0,'V','ITff0123456789012345678901234567'),
+	 ('2023-11-24 12:53:28',555.0,'V','ITff0123456789012345678901234567'),
+	 ('2023-11-24 12:53:28',3650.0,'P','ESee0123456789012345678901234567'),
+	 ('2023-11-24 12:53:28',9807.0,'V','ITff0123456789012345678901234567'),
+	 ('2023-11-24 12:53:28',1200.0,'P','ESaa0123456789012345678901234567'),
+	 ('2023-11-24 12:53:28',789.0,'V','ITbb0123456789012345678901234567'),
+	 ('2023-11-24 12:53:28',660.0,'P','ESdd0123456789012345678901234567'),
+	 ('2023-11-24 12:53:28',1345.0,'V','ESaa0123456789012345678901234567'),
+	 ('2023-11-24 12:53:28',9800.0,'P','ESee0123456789012345678901234567');
+
+INSERT INTO banca.movimento (data_ora_operazione,importo,tipo_operazione,iban) VALUES
+	 ('2023-11-24 12:53:28',65.0,'V','ESaa0123456789012345678901234567'),
+	 ('2023-11-24 12:53:28',1876.0,'P','ITee0123456789012345678901234567'),
+	 ('2023-11-24 12:53:28',598.0,'V','ESaa0123456789012345678901234567'),
+	 ('2023-11-24 12:53:28',1234.0,'P','ESaa0123456789012345678901234567'),
+	 ('2023-11-24 12:53:28',110.0,'V','ITff0123456789012345678901234567'),
+	 ('2023-11-24 12:53:28',2400.0,'P','ESee0123456789012345678901234567'),
+	 ('2023-11-24 12:42:50',450.0,'v','ESaa0123456789012345678901234567'),
+	 ('2023-11-24 12:48:36',555.0,'V','ITff0123456789012345678901234567'),
+	 ('2023-11-24 12:53:28',555.0,'V','ITff0123456789012345678901234567'),
+	 ('2023-11-24 12:53:28',3650.0,'P','ESee0123456789012345678901234567');
+
+INSERT INTO banca.movimento (data_ora_operazione,importo,tipo_operazione,iban) VALUES
+	 ('2023-11-24 12:53:28',9807.0,'V','ITff0123456789012345678901234567'),
+	 ('2023-11-24 12:53:28',1200.0,'P','ESaa0123456789012345678901234567'),
+	 ('2023-11-24 12:53:28',789.0,'V','ITbb0123456789012345678901234567'),
+	 ('2023-11-24 12:53:28',660.0,'P','ESdd0123456789012345678901234567'),
+	 ('2023-11-24 12:53:28',1345.0,'V','ESaa0123456789012345678901234567'),
+	 ('2023-11-24 12:53:28',9800.0,'P','ESee0123456789012345678901234567'),
+	 ('2023-11-24 12:53:28',65.0,'V','ESaa0123456789012345678901234567'),
+	 ('2023-11-24 12:53:28',1876.0,'P','ITee0123456789012345678901234567'),
+	 ('2023-11-24 12:53:28',598.0,'V','ESaa0123456789012345678901234567'),
+	 ('2023-11-24 12:53:28',1234.0,'P','ESaa0123456789012345678901234567');
+
+INSERT INTO banca.movimento (data_ora_operazione,importo,tipo_operazione,iban) VALUES
+	 ('2023-11-24 12:53:28',110.0,'V','ITff0123456789012345678901234567'),
+	 ('2023-11-24 12:53:28',2400.0,'P','ESee0123456789012345678901234567'),
+	 ('2023-11-30 12:42:50',225.0,'v','ESaa0123456789012345678901234567'),
+	 ('2023-11-24 12:42:50',678.0,'V','DEaa0123456789012345678901234567'),
+	 ('2023-11-25 14:48:36',543.0,'V','DEaa0123456789012345678901234567'),
+	 ('2023-11-26 13:48:36',963.0,'V','DEaa0123456789012345678901234567'),
+	 ('2023-11-27 02:48:36',367.0,'P','DEaa0123456789012345678901234567'),
+	 ('2023-11-28 03:48:36',1543.0,'P','DEaa0123456789012345678901234567'),
+	 ('2023-10-12 12:42:55',78.0,'V','DEbb0123456789012345678901234567'),
+	 ('2023-09-05 14:48:36',133.0,'V','DEbb0123456789012345678901234567');
+
+INSERT INTO banca.movimento (data_ora_operazione,importo,tipo_operazione,iban) VALUES
+	 ('2023-11-16 13:48:16',6923.0,'V','DEbb0123456789012345678901234567'),
+	 ('2023-12-07 02:08:11',635.0,'P','DEbb0123456789012345678901234567'),
+	 ('2023-01-28 03:04:09',4990.0,'P','DEbb0123456789012345678901234567');
+
+
+(8)
+Richiamare dal metodo main() della relativa classe il metodo popolaDatabase() della classe TestJdbcBanca dopo averla istanziata con new.
+
+(9)
+Richiamare dal main il metodo DAO di sELECT di cui al punto (1), stampandone i risultati in console (System.out su toString() di elencoMovimenti)

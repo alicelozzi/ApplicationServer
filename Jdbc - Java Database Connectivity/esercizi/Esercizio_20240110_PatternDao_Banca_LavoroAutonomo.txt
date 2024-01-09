@@ -1,0 +1,76 @@
+Premessa:
+fare riferimento all'allegato del progetto di esempio JdbcBanca (anche progetto di soluzione all'esercizio del 22/12).
+
+
+(1)
+Implementare, nella classe dao relativa, il metodo che esegue la seguente query:
+
+	--------------------------------------------------------------------------
+	=> seleziona i clienti che non hanno un conto
+	SELECT cl.codice_fiscale, cl.nominativo, cl.indirizzo
+	  FROM cliente cl LEFT JOIN conto co ON cl.codice_fiscale = co.codice_fiscale 
+	 WHERE co.iban IS NULL 
+	--------------------------------------------------------------------------
+
+
+(2)
+Implementare, nella classe dao relativa, il metodo che esegue la seguente query:
+
+	--------------------------------------------------------------------------
+	=> seleziona tutti i conti del cliente con nominativo che contiene un determinato valore
+	=> (confronta uso LIKE in QueryCatalog di JdbcMagazzino)
+	
+	SELECT co.iban, co.codice_fiscale, co.valuta, co.scoperto, co.data_ora_intestazione
+	  FROM conto co inner join cliente cl on co.codice_fiscale = cl.cod_fiscale 
+	 WHERE cl.nominativo LIKE ?
+	--------------------------------------------------------------------------
+
+(3)
+Implementare, nella classe dao relativa, il metodo che esegue la seguente query:
+
+	--------------------------------------------------------------------------
+	=> selezionare tutti i conti:
+		a) con un totale (versato o prelevato) 
+		b) in una certa valuta 
+		c) per un importo inferiore ad una certa cifra
+
+	SELECT co.iban, co.codice_fiscale, co.valuta, co.scoperto, co.data_ora_intestazione, SUM(mo.importo) as importo_V_o_P
+	  FROM conto co left join movimento mo ON co.iban = mo.iban 
+	 WHERE mo.tipo_operazione = ?
+	   AND co.valuta = ?
+	 GROUP BY mo.iban
+	HAVING importo_V_o_P < ?
+	   AND importo_V_o_P IS NOT NULL
+	
+	NOTA: anche se la query restituisce, oltre al conto, il campo 'importo_V_o_P' quest'utlimo lo possiamo comunque ignorare in lettura 
+		  e sfruttare il metodo privato loadContiByQuery() così com'è. In questo caso il campo 'importo_V_o_P'
+		  è 'solo' funzionale al risultato della query SQL. Non abbiamo la necessità, lato Java, 
+		  di conoscere l'esatto valore di importo per ciascun conto ma solo i dati del conto.
+		  
+(4)
+Implementare, nella classe dao relativa, il metodo che esegue la seguente query:
+
+	=> aggiornare tutti i conti in una certa valuta, che hanno uno scoperto superiore ad una cifra X, 
+		ponendo la data ed ora di intestazione ad un valore a piacere 
+		(ad esempio alle 23:59:59 del 24 dicembre 2023: '2023-12-24 23:59:59')
+
+	UPDATE conto 
+	   SET data_ora_intestazione = ?
+	 WHERE scoperto > ?
+	   AND valuta = ?
+
+(5)
+Nella classe TestJdbcBanca, al metodo main(), ai fini della verifica di quanto implementato: 
+
+
+	a) stampare l'elenco dei clienti senza conto
+	b) aggiungere un conto per uno dei clienti senza conto
+	c) aggiungere un ulteriore conto per il cliente di cui al punto b)
+	d) stampare i conti del cliente per cui si sono aggiunto i due conti
+
+	e) stampare i conti su cui è stata effettuata operazione di prelievo
+	   con un importo inferiore a 856 euro.
+	   
+	f) aggiornare i conti in eruo con uno scoperto superiore a 565 euro    
+
+

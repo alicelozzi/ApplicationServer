@@ -1,0 +1,20 @@
+Premessa:
+fare riferimento all'allegato del progetto di esempio JdbcBanca (anche progetto di soluzione all'esercizio del 22/12).
+
+
+(1)
+Implementare, nella relativa classe DAO, il metodo che legge tutti i movimenti effettuati su un determinato conto 
+
+
+(2)
+Implementare, nella relativa classe DAO, un metodo che elimina tutti i movimenti effettuati su un determinato conto
+
+
+(3)
+Nella classe TestJdbcBanca, al metodo main(), ai fini della verifica, su un determinato conto: 
+
+	a) stampare il contenuto dei movimenti effettuati sul conto
+	b) eliminare tutti i movimenti sul conto
+	c) stampare di nuovo il contenuto dei movimenti effettuati sul conto (non dovrebbe mostrare alcun movimento)
+
+

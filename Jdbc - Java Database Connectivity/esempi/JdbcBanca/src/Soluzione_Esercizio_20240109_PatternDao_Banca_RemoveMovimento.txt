@@ -1,0 +1,94 @@
+--- Aggiunte nella classe QueryCatalog le due seguenti query:
+
+    public static final String selectFromMovimentoByIban =
+            " SELECT id_movimento, importo, tipo_operazione, iban, data_ora_operazione "
+          + "   FROM movimento                                     					 "
+          + "  WHERE movimento.iban = ?              							 ";    
+	
+    public static final String deleteFromMovimentoByIban =
+            " DELETE 						"
+          + "   FROM movimento              "
+          + "  WHERE movimento.iban = ?     ";    
+
+
+--- Aggiunti nella classe MovimentoDao i due seguenti metodi:
+
+
+
+	public List<Movimento> loadMovimentoByIban(String iban) 
+												throws BancaModelException {
+		
+		List<Movimento> elencoMovimenti = new ArrayList<Movimento>();
+
+		try {
+
+			PreparedStatement preparedStatement = this.jdbcConnectionToDatabase
+					.prepareStatement(QueryCatalog.selectFromMovimentoByIban);
+
+			preparedStatement.setString(1, iban);
+
+			elencoMovimenti = loadMovimentiByQuery(preparedStatement);
+
+		} catch (SQLException sqlException) {
+
+			throw new BancaModelException("MovimentoDao -> loadMovimentoByIban -> " + sqlException.getMessage());
+		}
+
+		return elencoMovimenti;
+		
+	}
+
+	public void removeMovimentoByIban(String iban) 
+						throws BancaModelException {
+
+		try {
+
+			PreparedStatement preparedStatement = this.jdbcConnectionToDatabase
+					.prepareStatement(QueryCatalog.deleteFromMovimentoByIban);
+
+			preparedStatement.setString(1, iban);
+
+			preparedStatement.executeUpdate();
+
+		} catch (SQLException sqlException) {
+
+			throw new BancaModelException("MovimentoDao -> removeMovimentoByIban -> " + sqlException.getMessage());
+
+		}
+	};
+	
+
+--- Aggiunte alcune istruzioni nel metodo main() della classe TestJdbcBanca che si riporta integralmente ai fini di una magigore comprensione:
+
+	public static void main(String[] args) {
+		
+		
+		try {
+			TestJdbcBanca testJdbcBanca =  new TestJdbcBanca();
+			testJdbcBanca.popolaDatabase();
+			
+			System.out.println("Database 'banca' popolato corretamente");
+			
+			//stampare elenco movimenti attuale pre-eliminazione
+			List<Movimento> elencoMovimentiPreEliminazione =
+					testJdbcBanca.movimentoDao.loadMovimentoByIban("DEbb0123456789012345678901234567");
+			System.out.println("elenco movimenti pre-eliminazione");
+			System.out.println(elencoMovimentiPreEliminazione.toString());
+
+			//effettuare l'eliminazione
+			testJdbcBanca.movimentoDao.removeMovimentoByIban("DEbb0123456789012345678901234567");
+			
+			//stampare elenco movimenti post-eliminazione
+			//stampare elenco movimeti dopo eliminazine conti senza movimento
+			List<Movimento> elencoMovimentiPostEliminazione =
+					testJdbcBanca.movimentoDao.loadMovimentoByIban("DEbb0123456789012345678901234567");
+			
+			System.out.println("elenco movimenti post-eliminazione");
+			System.out.println(elencoMovimentiPostEliminazione.toString());
+			
+		} catch (BancaModelException bancaModelException) {
+			System.out.println(bancaModelException.getMessage());
+		} 
+	
+	}
+

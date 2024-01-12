@@ -157,7 +157,7 @@ public class ClienteDao extends ADao {
             
             preparedStatement.executeUpdate();
     
-        }catch (SQLException sqlException) {
+        } catch (SQLException sqlException) {
         	
             throw new BancaModelException("ClienteDao -> addCliente -> " + sqlException.getMessage());
             

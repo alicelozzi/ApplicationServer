@@ -17,9 +17,9 @@ public class QueryCatalog {
             + "  WHERE cliente.codice_fiscale = ?              	";
     
     public static final String selectFromContoByPrimaryKey =
-          "SELECT iban, codice_fiscale, valuta, scoperto, data_ora_intestazione	"
-        + "  FROM conto                                     					"
-        + " WHERE conto.iban = ?              									";    
+          "SELECT iban, codice_fiscale, valuta, saldo, scoperto, data_ora_intestazione	"
+        + "  FROM conto                                     							"
+        + " WHERE conto.iban = ?              											";    
 
     public static final String selectFromMovimentoByPrimaryKey =
               " SELECT id_movimento, importo, tipo_operazione, iban, data_ora_operazione "

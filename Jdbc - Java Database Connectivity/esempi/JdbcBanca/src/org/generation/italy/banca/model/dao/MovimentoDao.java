@@ -153,6 +153,8 @@ public class MovimentoDao extends ADao {
         
         try {           
             
+        	Trigger.checkBeforeInsertMovimento(movimento);
+        	
             PreparedStatement preparedStatement = this.jdbcConnectionToDatabase.prepareStatement(QueryCatalog.insertMovimento);
             
             preparedStatement.setString(1, movimento.getIban());

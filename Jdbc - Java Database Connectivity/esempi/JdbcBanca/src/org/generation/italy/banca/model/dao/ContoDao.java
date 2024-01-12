@@ -24,8 +24,8 @@ import org.generation.italy.banca.model.entity.Conto;
 
 public class ContoDao extends ADao {
 
-	public ContoDao(Connection jdbcConnectionToDatabase) {
-		super(jdbcConnectionToDatabase);
+	public ContoDao(Connection dbConnectionToDatabase) {
+		super(dbConnectionToDatabase);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -71,13 +71,16 @@ public class ContoDao extends ADao {
                 LocalDateTime dataOraIntestazione = rsSelect.getTimestamp("data_ora_intestazione").toLocalDateTime();
 		        if (rsSelect.wasNull()) {dataOraIntestazione = LocalDateTime.of(LocalDate.of(0,0,0), LocalTime.of(0, 0, 0));}
 		        
+		        Float saldo = rsSelect.getFloat("saldo");
+		        if (rsSelect.wasNull()) {saldo = 0.0f;}
+
 		        Float scoperto = rsSelect.getFloat("scoperto");
 		        if (rsSelect.wasNull()) {scoperto = 0.0f;}
 		        
 		        
-                Conto Conto = new Conto(iban, codiceFiscale, valuta, scoperto, dataOraIntestazione);
+                Conto conto = new Conto(iban, codiceFiscale, valuta, saldo, scoperto, dataOraIntestazione);
 
-                elencoConti.add(Conto);
+                elencoConti.add(conto);
 
             }
 

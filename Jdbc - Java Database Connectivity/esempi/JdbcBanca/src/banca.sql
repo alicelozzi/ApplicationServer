@@ -1,22 +1,16 @@
 CREATE DATABASE `banca` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 
+-- banca.cliente definition
+
 CREATE TABLE `cliente` (
   `codice_fiscale` char(16) NOT NULL,
   `nominativo` varchar(50) NOT NULL,
   `indirizzo` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`cod_fiscale`) USING BTREE
+  PRIMARY KEY (`codice_fiscale`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-CREATE TABLE `conto` (
-  `valuta` char(3) NOT NULL DEFAULT 'EUR' COMMENT 'valuta del conto: euro o dollari (EUR o USD)',
-  `scoperto` float NOT NULL DEFAULT 0 COMMENT 'massimo importo di scoperto concesso dalla banca quando il conto va in negativo: 500 significa fino a -500 euro',
-  `codice_fiscale` char(16) NOT NULL COMMENT 'codice fiscale del cliente proprietrario del conto',
-  `data_ora_intestazione` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'data ed ora in cui il conto Ã¨ stato registrato in banca (data ora di creazione del conto)',
-  `iban` char(32) NOT NULL COMMENT 'la banca ha filiali in Spagna ed in Italia: ''ES'' ed ''IT''. Il codice bancario internazionale: inizia con IT per l''italia. https://it.wikipedia.org/wiki/International_Bank_Account_Number',
-  PRIMARY KEY (`iban`) USING BTREE,
-  KEY `FK_conto_cliente` (`codice_fiscale`),
-  CONSTRAINT `FK_conto_cliente` FOREIGN KEY (`codice_fiscale`) REFERENCES `cliente` (`cod_fiscale`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- banca.movimento definition
 
 CREATE TABLE `movimento` (
   `id_movimento` int(11) NOT NULL AUTO_INCREMENT COMMENT 'numero progressivo auto incrementatne del movimento',
@@ -25,12 +19,24 @@ CREATE TABLE `movimento` (
   `tipo_operazione` char(1) NOT NULL COMMENT 'tipo di movimento: ''v''= versamento ; ''p'' = prelievo',
   `iban` char(32) NOT NULL COMMENT 'definito nella tabella conto',
   PRIMARY KEY (`id_movimento`) USING BTREE,
-  KEY `movimento_FK` (`iban`),
-  CONSTRAINT `movimento_FK` FOREIGN KEY (`iban`) REFERENCES `conto` (`iban`),
   CONSTRAINT `CheckTipoOperazione` CHECK (`tipo_operazione` = 'P' or `tipo_operazione` = 'V')
-) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=333 DEFAULT CHARSET=latin1;
 
 
+-- banca.conto definition
+
+CREATE TABLE `conto` (
+  `valuta` char(3) NOT NULL DEFAULT 'EUR' COMMENT 'valuta del conto: euro o dollari (EUR o USD)',
+  `scoperto` float NOT NULL DEFAULT 0 COMMENT 'massimo importo di scoperto concesso dalla banca quando il conto va in negativo: 500 significa fino a -500 euro',
+  `codice_fiscale` char(16) NOT NULL COMMENT 'codice fiscale del cliente proprietrario del conto',
+  `data_ora_intestazione` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'data ed ora in cui il conto è stato registrato in banca (data ora di creazione del conto)',
+  `iban` char(32) NOT NULL COMMENT 'la banca ha filiali in Spagna ed in Italia: ''ES'' ed ''IT''. Il codice bancario internazionale: inizia con IT per l''italia. https://it.wikipedia.org/wiki/International_Bank_Account_Number',
+  `saldo` float NOT NULL DEFAULT 0,
+  PRIMARY KEY (`iban`) USING BTREE,
+  KEY `FK_conto_cliente` (`codice_fiscale`),
+  CONSTRAINT `FK_conto_cliente` FOREIGN KEY (`codice_fiscale`) REFERENCES `cliente` (`codice_fiscale`),
+  CONSTRAINT `conto_check_valuta` CHECK (`valuta` = 'EUR' or `valuta` = 'USD' or `valuta` = 'GBP')
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 INSERT INTO banca.cliente (codice_fiscale,nominativo,indirizzo) VALUES
 	 ('BNCFRL0123456789','Bianca Fiorelli',NULL),
 	 ('GTNBGD0123456789','Gaetano Badalamenti',NULL),

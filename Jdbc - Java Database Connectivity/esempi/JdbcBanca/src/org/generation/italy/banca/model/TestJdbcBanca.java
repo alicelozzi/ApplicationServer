@@ -116,7 +116,7 @@ public class TestJdbcBanca {
 
 		//popolamento tabella movimento
 
-		movimentoDao.addMovimento(new Movimento("ITbb0123456789012345678901234567", 850.0f, "P"));
+		movimentoDao.addMovimento(new Movimento("ITbb0123456789012345678901234567", 850.0f, "P"));	//scatta il trigger...
 		
 //		movimentoDao.addMovimento(new Movimento("ESaa0123456789012345678901234567", 450.0f, "V"));
 //		movimentoDao.addMovimento(new Movimento("ITff0123456789012345678901234567", 555.0f, "V"));
@@ -176,9 +176,6 @@ public class TestJdbcBanca {
 			
 			System.out.println("Database 'banca' popolato corretamente");
 			
-			
-			
-			
 //			//stampare elenco movimenti attuale pre-eliminazione
 //			List<Movimento> elencoMovimentiPreEliminazione =
 //					testJdbcBanca.movimentoDao.loadMovimentoByIban("DEbb0123456789012345678901234567");
@@ -195,6 +192,9 @@ public class TestJdbcBanca {
 //			
 //			System.out.println("elenco movimenti post-eliminazione");
 //			System.out.println(elencoMovimentiPostEliminazione.toString());
+
+			
+			
 			
 		} catch (BancaModelException bancaModelException) {
 			System.out.println(bancaModelException.getMessage());

@@ -9,6 +9,7 @@ import org.generation.italy.banca.model.dao.ClienteDao;
 import org.generation.italy.banca.model.dao.ContoDao;
 import org.generation.italy.banca.model.dao.MovimentoDao;
 import org.generation.italy.banca.model.dao.QueryCatalog;
+import org.generation.italy.banca.model.dao.Trigger;
 import org.generation.italy.banca.model.entity.Cliente;
 import org.generation.italy.banca.model.entity.Conto;
 import org.generation.italy.banca.model.entity.Movimento;
@@ -28,9 +29,14 @@ public class TestJdbcBanca {
 				JdbcConnection
 					.readJdbcConnectionInstance("mariadb", "org.mariadb.jdbc.Driver", "localhost", "3306", "banca", "root", "")
 						.getDbConnection();
+		
 		this.clienteDao = new ClienteDao(this.dbConnection); 
 		this.contoDao = new ContoDao(this.dbConnection); 
 		this.movimentoDao = new MovimentoDao(this.dbConnection); 
+		
+		Trigger.clienteDao = this.clienteDao;
+		Trigger.movimentoDao = this.movimentoDao;
+		Trigger.contoDao = this.contoDao;
 		
 	}
 
@@ -101,59 +107,61 @@ public class TestJdbcBanca {
 		contoDao.addConto(new Conto ("ESdd0123456789012345678901234567", "SVCNGB0123456789", "EUR",345.0f));
 		contoDao.addConto(new Conto ("ESee0123456789012345678901234567", "SVCNGB0123456789", "USD", 150.0f));
 		contoDao.addConto(new Conto ("FRaa0123456789012345678901234567", "MRRGVN0123456789", "GBP", 987.0f));
+		
 		contoDao.addConto(new Conto ("ITbb0123456789012345678901234567", "VLDBCC0123456789", "EUR",500.0f));
+		
 		contoDao.addConto(new Conto ("ITdd0123456789012345678901234567","VLDBCC0123456789", "EUR",955.0f));
 		contoDao.addConto(new Conto ("ITee0123456789012345678901234567", "GTNBGD0123456789", "EUR", 230.0f));
 		contoDao.addConto(new Conto("ITff0123456789012345678901234567", "SVCNGB0123456789", "EUR",1000.0f));
 
 		//popolamento tabella movimento
-		movimentoDao.addMovimento(new Movimento("ESaa0123456789012345678901234567", 450.0f, "V"));
-		movimentoDao.addMovimento(new Movimento("ITff0123456789012345678901234567", 555.0f, "V"));
-		movimentoDao.addMovimento(new Movimento("ITff0123456789012345678901234567", 555.0f, "V"));
-		movimentoDao.addMovimento(new Movimento("ESee0123456789012345678901234567", 3650.0f, "P"));
-		movimentoDao.addMovimento(new Movimento("ITff0123456789012345678901234567", 9807.0f, "V"));
-		movimentoDao.addMovimento(new Movimento("ESaa0123456789012345678901234567", 1200.0f, "P"));
-		movimentoDao.addMovimento(new Movimento("ITbb0123456789012345678901234567", 789.0f, "V"));
-		movimentoDao.addMovimento(new Movimento("ESdd0123456789012345678901234567", 660.0f, "P"));
-		movimentoDao.addMovimento(new Movimento("ESaa0123456789012345678901234567", 1345.0f, "V"));
-		movimentoDao.addMovimento(new Movimento("ESee0123456789012345678901234567", 9800.0f, "P"));
-		movimentoDao.addMovimento(new Movimento("ESaa0123456789012345678901234567", 65.0f, "V"));
-		movimentoDao.addMovimento(new Movimento("ITee0123456789012345678901234567", 1876.0f, "P"));
-		movimentoDao.addMovimento(new Movimento("ESaa0123456789012345678901234567", 598.0f, "V"));
-		movimentoDao.addMovimento(new Movimento("ESaa0123456789012345678901234567", 1234.0f, "P"));
-		movimentoDao.addMovimento(new Movimento("ITff0123456789012345678901234567", 110.0f, "V"));
-		movimentoDao.addMovimento(new Movimento("ESee0123456789012345678901234567", 2400.0f, "P"));
-		movimentoDao.addMovimento(new Movimento("ESaa0123456789012345678901234567", 450.0f, "V"));
-		movimentoDao.addMovimento(new Movimento("ITff0123456789012345678901234567", 555.0f, "V"));
-		movimentoDao.addMovimento(new Movimento("ITff0123456789012345678901234567", 555.0f, "V"));
-		movimentoDao.addMovimento(new Movimento("ESee0123456789012345678901234567", 3650.0f, "P"));
-		movimentoDao.addMovimento(new Movimento("ITff0123456789012345678901234567", 9807.0f, "V"));
-		movimentoDao.addMovimento(new Movimento("ESaa0123456789012345678901234567", 1200.0f, "P"));
-		movimentoDao.addMovimento(new Movimento("ITbb0123456789012345678901234567", 789.0f, "V"));
-		movimentoDao.addMovimento(new Movimento("ESdd0123456789012345678901234567", 660.0f, "P"));
-		movimentoDao.addMovimento(new Movimento( "ESaa0123456789012345678901234567", 1345.0f, "V"));
-		movimentoDao.addMovimento(new Movimento("ESee0123456789012345678901234567", 9800.0f, "P"));
-		movimentoDao.addMovimento(new Movimento("ESaa0123456789012345678901234567", 65.0f, "V"));
-		movimentoDao.addMovimento(new Movimento("ITee0123456789012345678901234567", 1876.0f, "P"));
-		movimentoDao.addMovimento(new Movimento("ESaa0123456789012345678901234567", 598.0f, "V"));
-		movimentoDao.addMovimento(new Movimento("ESaa0123456789012345678901234567", 1234.0f, "P"));
-		movimentoDao.addMovimento(new Movimento("ITff0123456789012345678901234567", 110.0f,"V"));
-		movimentoDao.addMovimento(new Movimento("ESee0123456789012345678901234567", 2400.0f,"P"));
-		movimentoDao.addMovimento(new Movimento("ESaa0123456789012345678901234567", 225.0f,"V"));
-		movimentoDao.addMovimento(new Movimento("DEaa0123456789012345678901234567", 678.0f,"V"));
-		movimentoDao.addMovimento(new Movimento("DEaa0123456789012345678901234567", 543.0f,"V"));
-		movimentoDao.addMovimento(new Movimento("DEaa0123456789012345678901234567", 963.0f,"V"));
-		movimentoDao.addMovimento(new Movimento("DEaa0123456789012345678901234567", 367.0f,"P"));
-		movimentoDao.addMovimento(new Movimento("DEaa0123456789012345678901234567", 1543.0f,"P"));
-		movimentoDao.addMovimento(new Movimento("DEbb0123456789012345678901234567", 78.0f,"V"));
-		movimentoDao.addMovimento(new Movimento("DEbb0123456789012345678901234567", 133.0f,"V"));
-		movimentoDao.addMovimento(new Movimento("DEbb0123456789012345678901234567", 6923.0f,"V"));
-		movimentoDao.addMovimento(new Movimento("DEbb0123456789012345678901234567", 635.0f,"P"));
-		movimentoDao.addMovimento(new Movimento("DEbb0123456789012345678901234567", 4990.0f,"P"));		
+
+		movimentoDao.addMovimento(new Movimento("ITbb0123456789012345678901234567", 850.0f, "P"));
 		
-		//removeFrom (eleimina tutti i conti senza movimento)
+//		movimentoDao.addMovimento(new Movimento("ESaa0123456789012345678901234567", 450.0f, "V"));
+//		movimentoDao.addMovimento(new Movimento("ITff0123456789012345678901234567", 555.0f, "V"));
+//		movimentoDao.addMovimento(new Movimento("ITff0123456789012345678901234567", 555.0f, "V"));
+//		movimentoDao.addMovimento(new Movimento("ESee0123456789012345678901234567", 3650.0f, "P"));
+//		movimentoDao.addMovimento(new Movimento("ITff0123456789012345678901234567", 9807.0f, "V"));
+//		movimentoDao.addMovimento(new Movimento("ESaa0123456789012345678901234567", 1200.0f, "P"));
+//		movimentoDao.addMovimento(new Movimento("ITbb0123456789012345678901234567", 789.0f, "V"));
+//		movimentoDao.addMovimento(new Movimento("ESdd0123456789012345678901234567", 660.0f, "P"));
+//		movimentoDao.addMovimento(new Movimento("ESaa0123456789012345678901234567", 1345.0f, "V"));
+//		movimentoDao.addMovimento(new Movimento("ESee0123456789012345678901234567", 9800.0f, "P"));
+//		movimentoDao.addMovimento(new Movimento("ESaa0123456789012345678901234567", 65.0f, "V"));
+//		movimentoDao.addMovimento(new Movimento("ITee0123456789012345678901234567", 1876.0f, "P"));
+//		movimentoDao.addMovimento(new Movimento("ESaa0123456789012345678901234567", 598.0f, "V"));
+//		movimentoDao.addMovimento(new Movimento("ESaa0123456789012345678901234567", 1234.0f, "P"));
+//		movimentoDao.addMovimento(new Movimento("ITff0123456789012345678901234567", 110.0f, "V"));
+//		movimentoDao.addMovimento(new Movimento("ESee0123456789012345678901234567", 2400.0f, "P"));
+//		movimentoDao.addMovimento(new Movimento("ESaa0123456789012345678901234567", 450.0f, "V"));
+//		movimentoDao.addMovimento(new Movimento("ITff0123456789012345678901234567", 555.0f, "V"));
+//		movimentoDao.addMovimento(new Movimento("ITff0123456789012345678901234567", 555.0f, "V"));
+//		movimentoDao.addMovimento(new Movimento("ESee0123456789012345678901234567", 3650.0f, "P"));
+//		movimentoDao.addMovimento(new Movimento("ITff0123456789012345678901234567", 9807.0f, "V"));
+//		movimentoDao.addMovimento(new Movimento("ESaa0123456789012345678901234567", 1200.0f, "P"));
+//		movimentoDao.addMovimento(new Movimento("ITbb0123456789012345678901234567", 789.0f, "V"));
+//		movimentoDao.addMovimento(new Movimento("ESdd0123456789012345678901234567", 660.0f, "P"));
+//		movimentoDao.addMovimento(new Movimento( "ESaa0123456789012345678901234567", 1345.0f, "V"));
+//		movimentoDao.addMovimento(new Movimento("ESee0123456789012345678901234567", 9800.0f, "P"));
+//		movimentoDao.addMovimento(new Movimento("ESaa0123456789012345678901234567", 65.0f, "V"));
+//		movimentoDao.addMovimento(new Movimento("ITee0123456789012345678901234567", 1876.0f, "P"));
+//		movimentoDao.addMovimento(new Movimento("ESaa0123456789012345678901234567", 598.0f, "V"));
+//		movimentoDao.addMovimento(new Movimento("ESaa0123456789012345678901234567", 1234.0f, "P"));
+//		movimentoDao.addMovimento(new Movimento("ITff0123456789012345678901234567", 110.0f,"V"));
+//		movimentoDao.addMovimento(new Movimento("ESee0123456789012345678901234567", 2400.0f,"P"));
+//		movimentoDao.addMovimento(new Movimento("ESaa0123456789012345678901234567", 225.0f,"V"));
+//		movimentoDao.addMovimento(new Movimento("DEaa0123456789012345678901234567", 678.0f,"V"));
+//		movimentoDao.addMovimento(new Movimento("DEaa0123456789012345678901234567", 543.0f,"V"));
+//		movimentoDao.addMovimento(new Movimento("DEaa0123456789012345678901234567", 963.0f,"V"));
+//		movimentoDao.addMovimento(new Movimento("DEaa0123456789012345678901234567", 367.0f,"P"));
+//		movimentoDao.addMovimento(new Movimento("DEaa0123456789012345678901234567", 1543.0f,"P"));
+//		movimentoDao.addMovimento(new Movimento("DEbb0123456789012345678901234567", 78.0f,"V"));
+//		movimentoDao.addMovimento(new Movimento("DEbb0123456789012345678901234567", 133.0f,"V"));
+//		movimentoDao.addMovimento(new Movimento("DEbb0123456789012345678901234567", 6923.0f,"V"));
+//		movimentoDao.addMovimento(new Movimento("DEbb0123456789012345678901234567", 635.0f,"P"));
+//		movimentoDao.addMovimento(new Movimento("DEbb0123456789012345678901234567", 4990.0f,"P"));		
 		
-		//select from 
 		
 	}		
 
@@ -168,22 +176,25 @@ public class TestJdbcBanca {
 			
 			System.out.println("Database 'banca' popolato corretamente");
 			
-			//stampare elenco movimenti attuale pre-eliminazione
-			List<Movimento> elencoMovimentiPreEliminazione =
-					testJdbcBanca.movimentoDao.loadMovimentoByIban("DEbb0123456789012345678901234567");
-			System.out.println("elenco movimenti pre-eliminazione");
-			System.out.println(elencoMovimentiPreEliminazione.toString());
-
-			//effettuare l'eliminazione
-			testJdbcBanca.movimentoDao.removeMovimentoByIban("DEbb0123456789012345678901234567");
 			
-			//stampare elenco movimenti post-eliminazione
-			//stampare elenco movimeti dopo eliminazine conti senza movimento
-			List<Movimento> elencoMovimentiPostEliminazione =
-					testJdbcBanca.movimentoDao.loadMovimentoByIban("DEbb0123456789012345678901234567");
 			
-			System.out.println("elenco movimenti post-eliminazione");
-			System.out.println(elencoMovimentiPostEliminazione.toString());
+			
+//			//stampare elenco movimenti attuale pre-eliminazione
+//			List<Movimento> elencoMovimentiPreEliminazione =
+//					testJdbcBanca.movimentoDao.loadMovimentoByIban("DEbb0123456789012345678901234567");
+//			System.out.println("elenco movimenti pre-eliminazione");
+//			System.out.println(elencoMovimentiPreEliminazione.toString());
+//
+//			//effettuare l'eliminazione
+//			testJdbcBanca.movimentoDao.removeMovimentoByIban("DEbb0123456789012345678901234567");
+//			
+//			//stampare elenco movimenti post-eliminazione
+//			//stampare elenco movimeti dopo eliminazine conti senza movimento
+//			List<Movimento> elencoMovimentiPostEliminazione =
+//					testJdbcBanca.movimentoDao.loadMovimentoByIban("DEbb0123456789012345678901234567");
+//			
+//			System.out.println("elenco movimenti post-eliminazione");
+//			System.out.println(elencoMovimentiPostEliminazione.toString());
 			
 		} catch (BancaModelException bancaModelException) {
 			System.out.println(bancaModelException.getMessage());

@@ -14,7 +14,7 @@ public class Conto {
 	private Float scoperto;
 	private String codiceFiscale;
 	private LocalDateTime dataOraIntestazione;
-	
+	private Float saldo;
 	
     /***************/
     // COSTRUTTORI
@@ -23,13 +23,14 @@ public class Conto {
     //NOTA: Polimorfismo sul costruttore: poichè il campo data_ora_intestazione è valorizzato dal DBMS (vedi valore default: current_timstamp())
     //      si può ometttere nell'istanziazione della classe per scrivere il record relativo mentre è necessario indicarlo nel costruttore per leggerlo (query di SELECT) 
 	
-	public Conto(String iban, String codiceFiscale, String valuta, Float scoperto, LocalDateTime dataOraIntestazione) {
+	public Conto(String iban, String codiceFiscale, String valuta, Float saldo, Float scoperto, LocalDateTime dataOraIntestazione) {
 		super();
 		this.iban = iban;
 		this.valuta = valuta;
 		this.scoperto = scoperto;
 		this.codiceFiscale = codiceFiscale;
 		this.dataOraIntestazione = dataOraIntestazione;
+		this.saldo = saldo;
 	}
 
 	public Conto(String iban, String codiceFiscale, String valuta, Float scoperto) {
@@ -39,6 +40,7 @@ public class Conto {
 		this.scoperto = scoperto;
 		this.codiceFiscale = codiceFiscale;
 		this.dataOraIntestazione = null;
+		this.saldo = 0.0f;
 	}
 	
 	/********************/
@@ -85,17 +87,20 @@ public class Conto {
 	public LocalDateTime getDataOraIntestazione() {
 		return dataOraIntestazione;
 	}
-	
-	
-	/***********************************************************************/
-    // METODI DERIVATI DALLA CLASSE OBJECT: toString(), equals(), hashCode()
-    /***********************************************************************/  
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(codiceFiscale, dataOraIntestazione, iban, scoperto, valuta);
+	
+	public Float getSaldo() {
+		return saldo;
 	}
 
+	/***********************************************************************/
+    // METODI DERIVATI DALLA CLASSE OBJECT: toString(), equals(), hashCode()
+    /***********************************************************************/  	
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(codiceFiscale, dataOraIntestazione, iban, saldo, scoperto, valuta);
+	}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -108,15 +113,19 @@ public class Conto {
 		Conto other = (Conto) obj;
 		return Objects.equals(codiceFiscale, other.codiceFiscale)
 				&& Objects.equals(dataOraIntestazione, other.dataOraIntestazione) && Objects.equals(iban, other.iban)
-				&& Objects.equals(scoperto, other.scoperto) && Objects.equals(valuta, other.valuta);
+				&& Objects.equals(saldo, other.saldo) && Objects.equals(scoperto, other.scoperto)
+				&& Objects.equals(valuta, other.valuta);
 	}
-
 
 	@Override
 	public String toString() {
 		return "Conto [iban=" + iban + ", valuta=" + valuta + ", scoperto=" + scoperto + ", codiceFiscale="
-				+ codiceFiscale + ", dataOraIntestazione=" + dataOraIntestazione + "]";
+				+ codiceFiscale + ", dataOraIntestazione=" + dataOraIntestazione + ", saldo=" + saldo + "]";
 	}
+	
+	
+
+
 
 	
 	

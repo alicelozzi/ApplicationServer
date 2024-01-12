@@ -1,0 +1,7 @@
+
+PREMESSA: occorre che completiate i punti 3 e 4 dell'esercizio 'Esercizio_20240111_PatternDao_Banca_VarieQuery_LavoroAutonomo'
+
+1) analogamente a quanto visto a lezione: implementare nella classe trigger un metodo che impedisca l'inserimento del conto per un cliente che ha già un massimo di conti (vedere classe BancaModelConstants)
+2) richiamare tale metodo del metodo dao più opportuno
+
+NOTA: confronta con la gestione del trigger nel metodo addMovimento

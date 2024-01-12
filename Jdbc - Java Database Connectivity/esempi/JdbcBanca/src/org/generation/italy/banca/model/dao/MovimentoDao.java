@@ -153,7 +153,8 @@ public class MovimentoDao extends ADao {
         
         try {           
             
-        	Trigger.checkBeforeInsertMovimento(movimento);
+        	//TRIGGER TEMPORANEAMENTE DISATTIVATO: RIATTIVARE PER VERIFICA
+        	//Trigger.checkBeforeInsertMovimento(movimento);
         	
             PreparedStatement preparedStatement = this.jdbcConnectionToDatabase.prepareStatement(QueryCatalog.insertMovimento);
             

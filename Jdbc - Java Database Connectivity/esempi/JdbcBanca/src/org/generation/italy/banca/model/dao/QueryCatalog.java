@@ -45,7 +45,14 @@ public class QueryCatalog {
           + "   FROM movimento              "
           + "  WHERE movimento.iban = ?     ";    
     
-    
+    public static final String selectFromClienteSenzaConto = 
+    		  " SELECT cl.codice_fiscale, cl.nominativo, cl.indirizzo "
+    		+ " FROM cliente cl LEFT JOIN conto co ON cl.codice_fiscale = co.codice_fiscale " 
+    		+ " WHERE co.iban IS NULL "; 
 	
+    public static final String selectFromContoByCodiceFiscale = 
+          " SELECT iban, codice_fiscale, valuta, saldo, scoperto, data_ora_intestazione	"
+  		+ "   FROM conto co  " 
+  		+ "  WHERE co.codice_fiscale = ? "; 
 	
 }

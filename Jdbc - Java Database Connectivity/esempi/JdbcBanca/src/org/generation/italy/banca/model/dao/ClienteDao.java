@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.generation.italy.banca.model.BancaModelException;
 import org.generation.italy.banca.model.entity.Cliente;
+import org.generation.italy.banca.model.entity.Movimento;
 
 
 /**
@@ -123,6 +124,26 @@ public class ClienteDao extends ADao {
 
     }	
 	
+	public List<Cliente> loadClienteSenzaConto() 
+								throws BancaModelException {
+
+		List<Cliente> elencoClientiSenzaConto = new ArrayList<Cliente>();
+
+		try {
+
+			PreparedStatement preparedStatement = this.jdbcConnectionToDatabase
+					.prepareStatement(QueryCatalog.selectFromClienteSenzaConto);
+
+			elencoClientiSenzaConto = loadClientiByQuery(preparedStatement);
+
+		} catch (SQLException sqlException) {
+
+			throw new BancaModelException("ClienteDao -> loadClienteSenzaConto -> " + sqlException.getMessage());
+		}
+
+		return elencoClientiSenzaConto;
+
+	}
 	
 //	public loadClienteByNominativo(String nominativo) {
 //		

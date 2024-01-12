@@ -49,11 +49,7 @@ public class ContoDao extends ADao {
         List<Conto> elencoConti = new ArrayList<Conto>();
 
         try {
-//        	private String iban;
-//        	private String valuta;
-//        	private Float scoperto;
-//        	private String codiceFiscale;
-//        	private LocalDateTime dataOraIntestazione;
+
             ResultSet rsSelect
                     = preparedstatement.executeQuery();
 
@@ -123,6 +119,28 @@ public class ContoDao extends ADao {
         return Conto;
 
     }	
+	
+	public List<Conto> loadContoByCodiceFiscale(String codiceFiscale) throws BancaModelException {
+
+		List<Conto> elencoContiByCodiceFiscale = new ArrayList<Conto>();
+
+		try {
+
+			PreparedStatement preparedStatement = this.jdbcConnectionToDatabase
+					.prepareStatement(QueryCatalog.selectFromContoByCodiceFiscale);
+
+            preparedStatement.setString(1, codiceFiscale);
+
+			elencoContiByCodiceFiscale = loadContiByQuery(preparedStatement);
+
+		} catch (SQLException sqlException) {
+
+			throw new BancaModelException("ContoDao -> loadContoByCodiceFiscale -> " + sqlException.getMessage());
+		}
+
+		return elencoContiByCodiceFiscale;
+
+	}
 	
     /***********************/
     // METODI DI SCRITTURA DATI

@@ -5,3 +5,49 @@ PREMESSA: fare riferimento al progetto JdbcBanca presente negli esempi.
 
 
 NOTA: in addMovimento, dopo il try, impostare come prima istruzione la seguente: this.jdbcConnectionToDatabase.setAutoCommit(false) e come utlima istruzione prima del catch this.jdbcConnectionToDatabase.setAutoCommit(true); 
+
+
+Esempio di transazione su JdbcMagazzino:
+
+@Override
+    public 
+    void addOrdinazione(Ordinazione ordinazione) throws MagazzinoModelException {
+        
+        try { 
+            
+            this.dbMagazzinoConnection.setAutoCommit(false);
+            
+            Trigger.checkBeforeInsertOrdinazione(ordinazione);
+
+            ProdottoDao prodottoDao = new ProdottoDao();        
+            Prodotto prodotto = prodottoDao.loadProdottoByCodiceProdotto(ordinazione.getCodiceProdotto());
+            
+            PreparedStatement preparedStatement = dbMagazzinoConnection.prepareStatement(QueryCatalog.insertOrdinazione);
+            PreparedStatement preparedStatement2 = dbMagazzinoConnection.prepareStatement(QueryCatalog.updateQuantitaDisponibileProdottoByCodiceProdotto);
+           
+            preparedStatement.setString(1, ordinazione.getCodiceFiscale());            
+            preparedStatement.setString(2, ordinazione.getCodiceProdotto()); 
+            preparedStatement.setInt(3, ordinazione.getQuantitaOrdine());
+            preparedStatement.setFloat(4, prodotto.getPrezzo());
+            
+            int nuovaQuantitaDisponibileProdotto = prodotto.getQuantitaDisponibile() - ordinazione.getQuantitaOrdine();
+            
+            preparedStatement2.setInt(1,nuovaQuantitaDisponibileProdotto);
+            preparedStatement2.setString(2,ordinazione.getCodiceProdotto());
+            
+
+            
+            preparedStatement.executeUpdate();
+            preparedStatement2.executeUpdate();
+            
+            this.dbMagazzinoConnection.commit();
+            
+            this.dbMagazzinoConnection.setAutoCommit(true);
+    
+        } catch (SQLException sqlException) {
+        	
+            throw new MagazzinoModelException("OrdinazioneDao -> addOrdinazione -> " + sqlException.getMessage());
+            //rollback
+        }
+        
+    }   

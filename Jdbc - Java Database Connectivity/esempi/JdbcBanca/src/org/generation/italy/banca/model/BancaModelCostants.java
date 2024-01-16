@@ -12,7 +12,7 @@ package org.generation.italy.banca.model;
 
 public class BancaModelCostants {
 
-	public static final Integer maxMovimentiSuConto = 2;
+	public static final Integer maxMovimentiSuConto = 15;
 	
 	public static final Integer maxContiDiProprietaPerUnCliente = 4;
 	

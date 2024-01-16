@@ -96,51 +96,49 @@ public class TestJdbcBanca {
 		clienteDao.addCliente(new Cliente("VLDBCC0123456789", "Vladimiro Bocci"));
 
 		// popolamento tabella conto
-		contoDao.addConto(new Conto("DEaa0123456789012345678901234567", "MRRGVN0123456789", "GBP", 345.0f));
-		contoDao.addConto(new Conto("DEbb0123456789012345678901234567", "MRRGVN0123456789", "GBP", 523.0f));
-		contoDao.addConto(new Conto("ESaa0123456789012345678901234567", "VLDBCC0123456789", "EUR", 255.0f));
-		contoDao.addConto(new Conto("EScc0123456789012345678901234567", "GTNBGD0123456789", "EUR", 150.0f));
-		contoDao.addConto(new Conto("ESdd0123456789012345678901234567", "SVCNGB0123456789", "EUR", 345.0f));
-		contoDao.addConto(new Conto("ESee0123456789012345678901234567", "SVCNGB0123456789", "USD", 150.0f));
-		contoDao.addConto(new Conto("FRaa0123456789012345678901234567", "MRRGVN0123456789", "GBP", 987.0f));
-
+		contoDao.addConto(new Conto("DEaa0123456789012345678901234567", "MRRGVN0123456789", "GBP", 1345.0f));
+		contoDao.addConto(new Conto("DEbb0123456789012345678901234567", "MRRGVN0123456789", "GBP", 2523.0f));
+		contoDao.addConto(new Conto("ESaa0123456789012345678901234567", "VLDBCC0123456789", "EUR", 3955.0f));
+		contoDao.addConto(new Conto("EScc0123456789012345678901234567", "GTNBGD0123456789", "EUR", 1150.0f));
+		contoDao.addConto(new Conto("ESdd0123456789012345678901234567", "SVCNGB0123456789", "EUR", 2345.0f));
+		contoDao.addConto(new Conto("ESee0123456789012345678901234567", "SVCNGB0123456789", "USD", 2150.0f));
+		contoDao.addConto(new Conto("FRaa0123456789012345678901234567", "MRRGVN0123456789", "GBP", 1987.0f));
 		contoDao.addConto(new Conto("ITbb0123456789012345678901234567", "VLDBCC0123456789", "EUR", 500.0f));
-
 		contoDao.addConto(new Conto("ITdd0123456789012345678901234567", "VLDBCC0123456789", "EUR", 955.0f));
-		contoDao.addConto(new Conto("ITee0123456789012345678901234567", "GTNBGD0123456789", "EUR", 230.0f));
+		contoDao.addConto(new Conto("ITee0123456789012345678901234567", "GTNBGD0123456789", "EUR", 1230.0f));
 		contoDao.addConto(new Conto("ITff0123456789012345678901234567", "SVCNGB0123456789", "EUR", 1000.0f));
 
 		// popolamento tabella movimento
 		// ATTENZIONE=> il trigger è temporaneamente disattivaot per consentitre di verificare il codice
-		movimentoDao.addMovimento(new Movimento("ITbb0123456789012345678901234567", 850.0f, "P")); // scatta il trigger per superamento scoperto
+		movimentoDao.addMovimento(new Movimento("ITbb0123456789012345678901234567", 850.0f, "V")); // scatta il trigger per superamento scoperto
 		movimentoDao.addMovimento(new Movimento("ESaa0123456789012345678901234567", 450.0f, "V"));
 		movimentoDao.addMovimento(new Movimento("ITff0123456789012345678901234567", 555.0f, "V"));
 		movimentoDao.addMovimento(new Movimento("ITff0123456789012345678901234567", 555.0f, "V"));
-		movimentoDao.addMovimento(new Movimento("ESee0123456789012345678901234567", 3650.0f, "P"));
+		movimentoDao.addMovimento(new Movimento("ESee0123456789012345678901234567", 1350.0f, "P"));
 		movimentoDao.addMovimento(new Movimento("ITff0123456789012345678901234567", 9807.0f, "V"));
 		movimentoDao.addMovimento(new Movimento("ESaa0123456789012345678901234567", 1200.0f, "P"));
 		movimentoDao.addMovimento(new Movimento("ITbb0123456789012345678901234567", 789.0f, "V"));
 		movimentoDao.addMovimento(new Movimento("ESdd0123456789012345678901234567", 660.0f, "P"));
 		movimentoDao.addMovimento(new Movimento("ESaa0123456789012345678901234567", 1345.0f, "V"));
-		movimentoDao.addMovimento(new Movimento("ESee0123456789012345678901234567", 9800.0f, "P"));
+		movimentoDao.addMovimento(new Movimento("ESee0123456789012345678901234567", 780.0f, "V"));
 		movimentoDao.addMovimento(new Movimento("ESaa0123456789012345678901234567", 65.0f, "V"));
-		movimentoDao.addMovimento(new Movimento("ITee0123456789012345678901234567", 1876.0f, "P"));
+		movimentoDao.addMovimento(new Movimento("ITee0123456789012345678901234567", 1876.0f, "V"));
 		movimentoDao.addMovimento(new Movimento("ESaa0123456789012345678901234567", 598.0f, "V"));
 		movimentoDao.addMovimento(new Movimento("ESaa0123456789012345678901234567", 1234.0f, "P"));
 		movimentoDao.addMovimento(new Movimento("ITff0123456789012345678901234567", 110.0f, "V"));
-		movimentoDao.addMovimento(new Movimento("ESee0123456789012345678901234567", 2400.0f, "P"));
+		movimentoDao.addMovimento(new Movimento("ESee0123456789012345678901234567", 2400.0f, "V"));
 		movimentoDao.addMovimento(new Movimento("ESaa0123456789012345678901234567", 450.0f, "V"));
 		movimentoDao.addMovimento(new Movimento("ITff0123456789012345678901234567", 555.0f, "V"));
 		movimentoDao.addMovimento(new Movimento("ITff0123456789012345678901234567", 555.0f, "V"));
-		movimentoDao.addMovimento(new Movimento("ESee0123456789012345678901234567", 3650.0f, "P"));
+		movimentoDao.addMovimento(new Movimento("ESee0123456789012345678901234567", 650.0f, "P"));
 		movimentoDao.addMovimento(new Movimento("ITff0123456789012345678901234567", 9807.0f, "V"));
 		movimentoDao.addMovimento(new Movimento("ESaa0123456789012345678901234567", 1200.0f, "P"));
 		movimentoDao.addMovimento(new Movimento("ITbb0123456789012345678901234567", 789.0f, "V"));
 		movimentoDao.addMovimento(new Movimento("ESdd0123456789012345678901234567", 660.0f, "P"));
 		movimentoDao.addMovimento(new Movimento( "ESaa0123456789012345678901234567", 1345.0f, "V"));
-		movimentoDao.addMovimento(new Movimento("ESee0123456789012345678901234567", 9800.0f, "P"));
+		movimentoDao.addMovimento(new Movimento("ESee0123456789012345678901234567", 9800.0f, "V"));
 		movimentoDao.addMovimento(new Movimento("ESaa0123456789012345678901234567", 65.0f, "V"));
-		movimentoDao.addMovimento(new Movimento("ITee0123456789012345678901234567", 1876.0f, "P"));
+		movimentoDao.addMovimento(new Movimento("ITee0123456789012345678901234567", 776.0f, "P"));
 		movimentoDao.addMovimento(new Movimento("ESaa0123456789012345678901234567", 598.0f, "V"));
 		movimentoDao.addMovimento(new Movimento("ESaa0123456789012345678901234567", 1234.0f, "P"));
 		movimentoDao.addMovimento(new Movimento("ITff0123456789012345678901234567", 110.0f,"V"));

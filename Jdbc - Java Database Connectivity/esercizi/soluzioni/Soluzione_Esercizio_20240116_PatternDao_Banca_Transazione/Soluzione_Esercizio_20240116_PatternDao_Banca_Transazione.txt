@@ -1,0 +1,70 @@
+--- Aggiornato il metodo addMovimento in MovimentoDao, come segue:
+
+    public void addMovimento(Movimento movimento) 
+    									throws BancaModelException {
+        
+        try {           
+            
+        	//TRIGGER TEMPORANEAMENTE DISATTIVATO: RIATTIVARE PER VERIFICA
+        	Trigger.checkBeforeInsertMovimento(movimento);
+        	
+        	this.jdbcConnectionToDatabase.setAutoCommit(false);
+        	
+        	//INSERISCE MOVIMENTO
+        	
+            PreparedStatement preparedStatement = this.jdbcConnectionToDatabase.prepareStatement(QueryCatalog.insertMovimento);
+            
+            preparedStatement.setString(1, movimento.getIban());
+            preparedStatement.setFloat(2, movimento.getImporto());            
+            preparedStatement.setString(3, movimento.getTipoOperazione());            
+            
+            preparedStatement.executeUpdate();
+            
+            
+        	//AGGIORNA SALDO
+
+            PreparedStatement preparedStatement2 = this.jdbcConnectionToDatabase.prepareStatement(QueryCatalog.updateSaldoFromContoByIban);
+            
+            ContoDao contoDao = new ContoDao(this.jdbcConnectionToDatabase); 
+            Conto conto = contoDao.loadContoByPrimaryKey(movimento.getIban()); 
+
+            Float nuovoSaldo = conto.getSaldo();								//default: il nuovoSaldo è uguale al saldo attuale								
+            
+            if (movimento.getTipoOperazione().equals("P")) {					//movimento di prelievo
+            	nuovoSaldo = conto.getSaldo() - movimento.getImporto();			//sottrae l'importo del prelievo al saldo attuale
+            }
+            else if (movimento.getTipoOperazione().equals("V")) {				//movimento di versamento 		
+            	nuovoSaldo = conto.getSaldo() + movimento.getImporto();			//somma l'importo del versamento al saldo attuale
+            }
+            
+            preparedStatement2.setFloat(1, nuovoSaldo);
+            preparedStatement2.setString(2, movimento.getIban());            
+            
+            preparedStatement2.executeUpdate();
+            
+            this.jdbcConnectionToDatabase.commit();
+            
+        } catch (SQLException sqlExceptionForCommit) {							//eccezzione per fallimento nell'esecuzione della transazione
+        	
+        	try {
+        		this.jdbcConnectionToDatabase.rollback();						//ripristina lo stato del database a prima dell'esecuzione della transazione 
+        	} catch (SQLException sqlExceptionForRollback) {					//eccezzione per fallimento del rollback
+            	throw new BancaModelException("MovimentoDao -> addMovimento -> " + sqlExceptionForRollback.getMessage());
+            																	//normalizza eccezione su fallimento del rollback
+        	}
+        	
+        	throw new BancaModelException("MovimentoDao -> addMovimento -> " + sqlExceptionForCommit.getMessage());
+        																		//normalizza eccezione su fallimento nell'esecuzione della transazione
+        }   
+        finally {
+        	
+        	try {
+        		this.jdbcConnectionToDatabase.setAutoCommit(true);
+        	}
+    		catch (SQLException sqlExceptionForSetAutoCommit) {					//eccezzione per fallimento nell'esecuzione del setAutoCommit
+            	throw new BancaModelException("MovimentoDao -> addMovimento -> " + sqlExceptionForSetAutoCommit.getMessage());
+																				//normalizza eccezione su fallimento del setAutoCommit
+    		}
+        }
+        
+	}; 

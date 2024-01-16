@@ -54,5 +54,11 @@ public class QueryCatalog {
           " SELECT iban, codice_fiscale, valuta, saldo, scoperto, data_ora_intestazione	"
   		+ "   FROM conto co  " 
   		+ "  WHERE co.codice_fiscale = ? "; 
-	
+
+    
+    public static final String updateSaldoFromContoByIban =
+            " UPDATE conto					"
+          + "    SET conto.saldo = ?        "
+          + "  WHERE conto.iban = ?     	";    
+    
 }

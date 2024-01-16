@@ -3,6 +3,7 @@ package org.generation.italy.banca.model.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLClientInfoException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.generation.italy.banca.model.BancaModelException;
+import org.generation.italy.banca.model.entity.Conto;
 import org.generation.italy.banca.model.entity.Movimento;
 
 /**
@@ -154,7 +156,11 @@ public class MovimentoDao extends ADao {
         try {           
             
         	//TRIGGER TEMPORANEAMENTE DISATTIVATO: RIATTIVARE PER VERIFICA
-        	//Trigger.checkBeforeInsertMovimento(movimento);
+        	Trigger.checkBeforeInsertMovimento(movimento);
+        	
+        	this.jdbcConnectionToDatabase.setAutoCommit(false);
+        	
+        	//INSERISCE MOVIMENTO
         	
             PreparedStatement preparedStatement = this.jdbcConnectionToDatabase.prepareStatement(QueryCatalog.insertMovimento);
             
@@ -163,12 +169,54 @@ public class MovimentoDao extends ADao {
             preparedStatement.setString(3, movimento.getTipoOperazione());            
             
             preparedStatement.executeUpdate();
-    
-        }catch (SQLException sqlException) {
-        	
-            throw new BancaModelException("MovimentoDao -> addMovimento -> " + sqlException.getMessage());
             
+            
+        	//AGGIORNA SALDO
+
+            PreparedStatement preparedStatement2 = this.jdbcConnectionToDatabase.prepareStatement(QueryCatalog.updateSaldoFromContoByIban);
+            
+            ContoDao contoDao = new ContoDao(this.jdbcConnectionToDatabase); 
+            Conto conto = contoDao.loadContoByPrimaryKey(movimento.getIban()); 
+
+            Float nuovoSaldo = conto.getSaldo();								//default: il nuovoSaldo è uguale al saldo attuale								
+            
+            if (movimento.getTipoOperazione().equals("P")) {					//movimento di prelievo
+            	nuovoSaldo = conto.getSaldo() - movimento.getImporto();			//sottrae l'importo del prelievo al saldo attuale
+            }
+            else if (movimento.getTipoOperazione().equals("V")) {				//movimento di versamento 		
+            	nuovoSaldo = conto.getSaldo() + movimento.getImporto();			//somma l'importo del versamento al saldo attuale
+            }
+            
+            preparedStatement2.setFloat(1, nuovoSaldo);
+            preparedStatement2.setString(2, movimento.getIban());            
+            
+            preparedStatement2.executeUpdate();
+            
+            this.jdbcConnectionToDatabase.commit();
+            
+        } catch (SQLException sqlExceptionForCommit) {							//eccezzione per fallimento nell'esecuzione della transazione
+        	
+        	try {
+        		this.jdbcConnectionToDatabase.rollback();						//ripristina lo stato del database a prima dell'esecuzione della transazione 
+        	} catch (SQLException sqlExceptionForRollback) {					//eccezzione per fallimento del rollback
+            	throw new BancaModelException("MovimentoDao -> addMovimento -> " + sqlExceptionForRollback.getMessage());
+            																	//normalizza eccezione su fallimento del rollback
+        	}
+        	
+        	throw new BancaModelException("MovimentoDao -> addMovimento -> " + sqlExceptionForCommit.getMessage());
+        																		//normalizza eccezione su fallimento nell'esecuzione della transazione
+        }   
+        finally {
+        	
+        	try {
+        		this.jdbcConnectionToDatabase.setAutoCommit(true);
+        	}
+    		catch (SQLException sqlExceptionForSetAutoCommit) {					//eccezzione per fallimento nell'esecuzione del setAutoCommit
+            	throw new BancaModelException("MovimentoDao -> addMovimento -> " + sqlExceptionForSetAutoCommit.getMessage());
+																				//normalizza eccezione su fallimento del setAutoCommit
+    		}
         }
+        
 	}; 
 	    
 

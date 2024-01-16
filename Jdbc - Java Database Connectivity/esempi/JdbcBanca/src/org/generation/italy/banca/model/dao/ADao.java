@@ -22,4 +22,5 @@ class ADao {
 	public ADao(Connection jdbcConnectionToDatabase) {
 		this.jdbcConnectionToDatabase = jdbcConnectionToDatabase;
 	}
+	
 }

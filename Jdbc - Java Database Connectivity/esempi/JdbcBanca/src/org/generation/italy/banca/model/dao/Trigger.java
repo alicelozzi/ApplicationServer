@@ -40,7 +40,7 @@ public class Trigger {
         	//legge i dati del conto per ottenerne il saldo corrente
         	Conto conto = contoDao.loadContoByPrimaryKey(movimento.getIban());
 
-        	if (Math.abs(conto.getSaldo() - movimento.getImporto()) > conto.getScoperto()) {
+        	if (conto.getSaldo() - movimento.getImporto() < (0 - conto.getScoperto())) {
         		throw new BancaModelException ("Trigger -> checkBeforeInsertMovimento -> un movimento di prelievo può essere effettuato su un conto solo se, sommato al saldo corrente, non supera lo scoperto!");
         	}
     	}

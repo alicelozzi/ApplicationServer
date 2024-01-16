@@ -1,0 +1,7 @@
+
+PREMESSA: fare riferimento al progetto JdbcBanca presente negli esempi.
+
+1) implementare la transazione nel meotdo addMovimento: l'inserimento del movimento comporta l'aggiornamento del saldo sul record conto contemporaneamente alla scrittura del record movimento.
+
+
+NOTA: in addMovimento, dopo il try, impostare come prima istruzione la seguente: this.jdbcConnectionToDatabase.setAutoCommit(false) e come utlima istruzione prima del catch this.jdbcConnectionToDatabase.setAutoCommit(true); 

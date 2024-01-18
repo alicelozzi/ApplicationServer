@@ -1,0 +1,50 @@
+Sapendo che l'host a cui inviare i messaggi HTTP Request è "localhost:8081",
+che l'applicazione web di riferimento è "calcolatrice", che l'utente che naviga è 
+"utenteanonimo", provare a costruire i messaggi HTTP REQUEST per le seguenti URL:
+
+1) ricerca calcoli in data odierna (nome dell'azione "ricerca-calcoli-odierni"), 
+URL:
+
+	http://localhost:8081/calcolatrice/utente-anonimo/ricerca-calcoli-odierni
+
+2) azione ricerca calcoli in data specifica (nome dell'azione "ricerca-calcoli-indataspecifica")
+ 
+	http://localhost:8081/calcolatrice/utente-anonimo/ricerca-calcoli-indataspecifica?data-calcolo=2024-01-18
+ 
+
+Gli header del messaggio HTTP di request sono valorizzati a vostro piacimento. 
+
+ 
+--------------------------------------------------------------------------------
+ ESEMPIO DI MESSAGGI HTTP REQUEST E RESPONSE
+ 
+ URL=> htttp://www.repubblica.it/index.html
+
+
+***************** HTTP REQUEST *****************
+
+GET /index.html HTTP/1.1
+
+HOST: www.repubblica.it
+CONTENT-TYPE: text/html (corrisponde al MIME-TYPE)
+
+{body vuoto (empty)}
+
+
+
+**************** HTTP RESPONSE **************** 
+
+HTTP/1.1 200 OK
+
+DATE: 24 sept 2023 10:31
+CONTENT-TYPE: text/html
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Titolo della pagina html</title>
+</head>
+<body>
+	<p>Descrizione della pagina html</p>
+</body>
+</html>

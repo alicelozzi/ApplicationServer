@@ -1,0 +1,10 @@
+Creare la classe servlet che, nell'ambito della web-application 'banca', gestisce le azioni dedicate all'attore-utente 'operatore-banca'.
+
+In particolare si implementi la gestione della URL seguente:
+
+-------------------- Url per azioni svolte dall'attore operatore-banca ---------------------
+1) apre conto per un cliente
+http://localhost:8081/banca/operatore-banca/apri-conto-cliente?iban=ESaa0123456789012345678901234567&codice-fiscale=MRRGVN0123456789&valuta=EUR
+
+NOTA: l'implementazione parte dal richiamo della servlet opportuno nell'ambito del metodo webAppServiceManager deifnito nella classe HttpserverSocket.
+

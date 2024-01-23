@@ -8,6 +8,8 @@ http://localhost:8081/banca/operatore-banca/apri-conto-cliente?iban=ESaa01234567
 
 NOTA: l'implementazione parte dal richiamo della servlet opportuno nell'ambito del metodo webAppServiceManager deifnito nella classe HttpserverSocket.
 
+
+-------------------- Url per azioni svolte dall'attore cliente ---------------------
 2) versamento per un cliente
 http://localhost:8081/banca/cliente/versamento?iban=ESaa0123456789012345678901234567&importo=780
 

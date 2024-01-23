@@ -11,10 +11,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.generation.italy.applicationserver.control.BancaControlException;
-import org.generation.italy.applicationserver.control.CalcolatriceControlException;
-import org.generation.italy.applicationserver.control.ClienteServlet;
-import org.generation.italy.applicationserver.control.UtenteAnonimoServlet;
+import org.generation.italy.applicationserver.banca.control.BancaControlException;
+import org.generation.italy.applicationserver.banca.control.ClienteServlet;
+import org.generation.italy.applicationserver.banca.control.OperatoreBancaServlet;
+import org.generation.italy.applicationserver.calcolatrice.control.CalcolatriceControlException;
+import org.generation.italy.applicationserver.calcolatrice.control.UtenteAnonimoServlet;
 
 /**
  *
@@ -255,12 +256,12 @@ public class HttpServerSocket {
                         break;
                         
             		case "operatore-banca":
-//						try {
-//							htmlContentPage = OperatoreBancaServlet.executeAction(actionName, parameterValueCollection);
-//						} catch (BancaControlException e) {
-//							// TODO Auto-generated catch block
-//							System.out.println(e.getMessage());
-//						}
+						try {
+							htmlContentPage = OperatoreBancaServlet.executeAction(actionName, parameterValueCollection);
+						} catch (BancaControlException e) {
+							// TODO Auto-generated catch block
+							System.out.println(e.getMessage());
+						}
 
             			break;
             	}

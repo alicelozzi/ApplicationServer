@@ -11,7 +11,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.generation.italy.applicationserver.control.BancaControlException;
 import org.generation.italy.applicationserver.control.CalcolatriceControlException;
+import org.generation.italy.applicationserver.control.ClienteServlet;
 import org.generation.italy.applicationserver.control.UtenteAnonimoServlet;
 
 /**
@@ -216,9 +218,7 @@ public class HttpServerSocket {
 
         byte[] htmlContentPage = "".getBytes();                                 //contenuto html, risultato dell'esecuzione dell'azione richiesta per una determinata webapp
 
-        String webAppServiceName = parameterValueCollection.get("servizio-app");
-
-
+        
         switch (webAppName.toLowerCase()) {
         
             case "calcolatrice":
@@ -240,12 +240,36 @@ public class HttpServerSocket {
                 
                 break;
                 
-                default:;
+            case "banca":
+            	
+            	switch (servletName.toLowerCase()) {
+            	
+            		case "cliente":
+						try {
+							htmlContentPage = ClienteServlet.executeAction(actionName, parameterValueCollection);
+						} catch (BancaControlException e) {
+							// TODO Auto-generated catch block
+							System.out.println(e.getMessage());
+						}
 
-                case "conversioni":
-                	
-                	break;
-        }
+                        break;
+                        
+            		case "operatore-banca":
+//						try {
+//							htmlContentPage = OperatoreBancaServlet.executeAction(actionName, parameterValueCollection);
+//						} catch (BancaControlException e) {
+//							// TODO Auto-generated catch block
+//							System.out.println(e.getMessage());
+//						}
+
+            			break;
+            	}
+            	
+            	break;
+
+            default:;
+
+    	}
                 
         return htmlContentPage;
     }

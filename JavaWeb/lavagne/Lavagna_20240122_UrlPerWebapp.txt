@@ -1,0 +1,97 @@
+
+URL => http://localhost:8081/calcolatrice/utenteanonimo/ricerca-calcoli-indataspecifica?data-inizio-calcolo=2023-07-24&data-fine-calcolo=2024-01-24
+URL aliasing => http://localhost:8081/ricerca-calcoli-ultimi-sei-mesi
+
+protocollo=> http:// 
+dominio e porta => localhost:8081 
+URI => /calcolatrice/utenteanonimo/ricerca-calcoli-indataspecifica
+	QueryString => ? (inizio dei parametri) chiave='data-calcolo' = 'valore= '2021-12-14'
+
+
+
+--------- HTTP REQUEST (GET) con URL tradotto dal browser------------------
+GET /calcolatrice/utenteanonimo/ricerca-calcoli-indataspecifica?data-inizio-calcolo=2023-07-24&data-fine-calcolo=2024-01-24 HTTP/1.1
+
+HOST: localhost:8081
+Accept: text/html 
+.................
+
+{body empty}
+--------------------------------------------------------------------------
+
+
+***** convenzioni adottate nell'interpretazione della URI da parte dell'applicazione web scritta in Java
+NOTA: nome della web-app => 'calcolatrice'
+      nome dell'utente a cui corrisponde la servlet che ne gestisce le azioni richieste= 'utenteanonimo'
+
+
+
+http://localhost:8081/calcolatrice/utenteanonimo/ricerca-calcoli-indataodierna
+
+
+2024-01-22 15:33:44.000
+
+
+-------------------- Url per ricerca movimenti effettuati su un conto da parte dell'attore-utente cliente? ---------------------
+
+http://localhost:8081/banca/cliente/prelievo?iban=ITff0123456789012345678901234567&importo=555
+http://localhost:8081/banca/cliente/versamento?iban=ESaa0123456789012345678901234567&importo=780
+
+http://localhost:8081/banca/cliente/ricerca-prelievi?iban=ESaa0123456789012345678901234567
+http://localhost:8081/banca/cliente/ricerca-versamenti?iban=ESaa0123456789012345678901234567
+http://localhost:8081/banca/cliente/ricerca-movimenti-effettuati?iban=ESaa0123456789012345678901234567&tipo-operazione=P
+http://localhost:8081/banca/cliente/ricerca-movimenti-effettuati?iban=ESaa0123456789012345678901234567&tipo-operazione=V
+
+
+
+-------------------- Url per azioni svolte dall'attore operatore-banca ? ---------------------
+1) apre conto per un cliente
+http://localhost:8081/banca/operatore-banca/apri-conto-cliente?iban=ESaa0123456789012345678901234567&codice-fiscale=MRRGVN0123456789&valuta=EUR
+
+2) leggere i movimenti effettuati da un cliente
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+***** HashMap injava per la parameterValueCollection
+iban			ESaa0123456789012345678901234567
+tipo-operazione 	P
+
+
+01110101 0111111 0101010 1000000 01110000 01110000 01110000 0111000 001000111
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+	

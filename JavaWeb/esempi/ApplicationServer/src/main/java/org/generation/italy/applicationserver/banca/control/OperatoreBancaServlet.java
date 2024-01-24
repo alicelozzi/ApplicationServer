@@ -5,6 +5,8 @@ import java.util.Map;
 import org.generation.italy.applicationserver.banca.model.BancaModelException;
 import org.generation.italy.applicationserver.banca.model.TestJdbcBanca;
 import org.generation.italy.applicationserver.banca.model.entity.Conto;
+import org.generation.italy.applicationserver.banca.view.FormApriContoClienteView;
+import org.generation.italy.applicationserver.calcolatrice.view.FormCalcoloView;
 
 public class OperatoreBancaServlet {
 
@@ -21,13 +23,29 @@ public class OperatoreBancaServlet {
 				htmlContentPage = actionApriContoCliente(parameterValueCollection);
 				break;
 			
-				default:;
+				
+			case "form-apri-conto-cliente":
+				htmlContentPage = actionFormApriContoCliente(parameterValueCollection);
+				break;
+				
+			default:;
 		}
 		
 		return htmlContentPage;
 	}
 	
-	
+	private
+	static
+	byte[] actionFormApriContoCliente(Map<String, String> parameterValueCollection) {
+													//throws BancaControlException, BancaModelException	{
+		byte[] htmlContentPage = "".getBytes();
+		
+		htmlContentPage = FormApriContoClienteView.generateHtmlPage();
+		
+		return htmlContentPage;
+		
+	}
+
 	
 	private
 	static

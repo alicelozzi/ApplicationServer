@@ -1,0 +1,37 @@
+<html>
+
+	<head>
+		<title>Webapp Banca</title>
+	</head>
+
+	<body>
+        <center>
+            <h1>Apri Conto Cliente</h1>
+        </center>
+		
+		<form action="/banca/operatore-banca/apri-conto-cliente" method="post">
+		
+			<p>Per favore, indicare i dati per il cliente di cui si vuole aprire il conto!!!.</p>
+			
+			<label for="iban">Iban</label>
+			<br>
+			<input type="text" id="iban" name="iban" value="" />
+	
+			<br>	
+			
+			<label for="valuta">Valuta</label><br>
+			<input type="text" id="valuta" name="valuta" value="" />
+	
+			<br>
+
+			<label for="codice-fiscale">Codice Fiscale</label><br>
+			<input type="text" id="codice-fiscale" name="codice-fiscale" value="" />
+
+			<br>
+		
+			<input type="submit" value="apri conto cliente">
+			
+		</form>
+  
+	</body>
+</html>

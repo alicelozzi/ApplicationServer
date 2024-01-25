@@ -1,0 +1,37 @@
+<html>
+
+	<head>
+		<title> WebApp Banca </title>
+	</head>
+
+	<body>
+        <center>
+            <h1> Versamento </h1>
+        </center>
+		
+		<form action="/banca/cliente-banca/versamento" method="post">
+		
+			<p>Per favore, indicare i dati per cui si vuole effettuare un versamento.</p>
+			
+			<label for="iban">Iban</label>
+			<br>
+			<input type="text" id="iban" name="iban" value="" />
+	
+			<br>	
+			
+			<label for="importo">Importo</label><br>
+			<input type="text" id="importo" name="importo" value="" />
+	
+			<br>
+
+			<label for="codice-fiscale">Codice Fiscale</label><br>
+			<input type="text" id="codice-fiscale" name="codice-fiscale" value="" />
+
+			<br>
+		
+			<input type="submit" value="apri conto cliente">
+			
+		</form>
+  
+	</body>
+</html>

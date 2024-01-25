@@ -1,0 +1,35 @@
+
+https://www.repubblica.it/index.html (URL di richiesta)
+-----------------------------------------------
+
+(Messaggio HTTP di richiesta formalizzato da riga 7 a riga 11, con metodo GET il body della richiesta è assente)
+************************************
+GET /index.html HTTP/1.1
+
+Host:www.repubblica.it
+Accept:text/html
+User-Agent: mozilla....
+************************************
+
+
+
+
+(Messaggio HTTP di risposta)
+
+************************************
+HTTP/1.1 200 OK
+
+Date: 12 Sep 2021,12:34:54
+Connection: keep-alive
+Content-Encoding:br
+Server: Apache
+Content-type: text/html
+
+<html>
+	<head>
+		<title>Titolo della mia pagina web </title>
+	</head>
+	<body>
+		<p>questo è il conteunto testuale della mia pagina web </p>
+	</body>
+</html>
